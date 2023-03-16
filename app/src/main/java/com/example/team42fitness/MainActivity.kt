@@ -13,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.example.team42fitness.databinding.ActivityMainBinding
 
+const val FOODDATA_CENTRAL_APPID = BuildConfig.FOODDATA_CENTRAL_API_KEY
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration

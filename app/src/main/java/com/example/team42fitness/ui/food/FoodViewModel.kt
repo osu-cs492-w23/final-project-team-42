@@ -9,4 +9,6 @@ class FoodViewModel : ViewModel() {
         value = "This is Food Fragment"
     }
     val text: LiveData<String> = _text
+
+
 }

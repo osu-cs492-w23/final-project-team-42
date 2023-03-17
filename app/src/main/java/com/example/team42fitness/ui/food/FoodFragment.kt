@@ -1,21 +1,17 @@
 package com.example.team42fitness.ui.food
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import androidx.fragment.app.Fragment
+import android.text.TextUtils
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
-import com.example.team42fitness.data.foodData.FoodData
-import com.example.team42fitness.databinding.FragmentSlideshowBinding
-import com.example.team42fitness.ui.slideshow.SlideshowViewModel
-import com.google.android.material.progressindicator.CircularProgressIndicator
+import com.example.team42fitness.data.foodData.FoodDate
 
 
 /*
@@ -23,34 +19,38 @@ this will be the main page of the list of food. it will display a list (using re
 * description of the food eaten or nutrition. each item in the list will be clickable to display another fragment of
 * each food items added for that day.
 * */
-class FoodFragment : Fragment() {
+class FoodFragment : Fragment(R.layout.fragment_food) {
+    private val viewModel: FoodViewModel by viewModels()
 
-    private var _binding: FragmentSlideshowBinding? = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+        val dateEntry = view.findViewById<EditText>(R.id.et_date_entry)
+        val addDateBtn = view.findViewById<Button>(R.id.btn_add_date)
+        val foodDateListRV: RecyclerView = view.findViewById(R.id.rv_food_list)
+        foodDateListRV.layoutManager = LinearLayoutManager(requireContext())
+        foodDateListRV.setHasFixedSize(true)
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        val foodViewModel =
-            ViewModelProvider(this).get(FoodViewModel::class.java)
+        val adapter = FoodAdapter()
 
-        _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+        foodDateListRV.adapter = adapter
 
-        val textView: TextView = binding.textSlideshow
-        foodViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+
+
+        addDateBtn.setOnClickListener{
+            // get string rep of text
+            val dateText = dateEntry.text.toString()
+
+            if (!TextUtils.isEmpty(dateText)){
+                //add to recycler view
+                adapter.addFoodDate(FoodDate(dateText))
+                foodDateListRV.scrollToPosition(0)
+                dateEntry.setText("")
+            }
+
+
         }
-        return root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+
 }

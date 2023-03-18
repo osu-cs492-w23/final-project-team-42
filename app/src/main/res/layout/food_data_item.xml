@@ -12,6 +12,14 @@
         android:textAppearance="?attr/textAppearanceHeadline5"
         android:padding="16dp"/>
 
+    <Button
+        android:id="@+id/btn_add_food_data"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:layout_gravity="right"/>
+
+
 
 
 </com.google.android.material.card.MaterialCardView>

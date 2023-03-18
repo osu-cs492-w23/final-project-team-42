@@ -35,7 +35,11 @@ class FoodAdapter(private val onDateClick: () -> Unit)
 
     class FoodDateViewHolder(view: View, private val onClick: () -> Unit): RecyclerView.ViewHolder(view){
         private val foodDateTV = view.findViewById<TextView>(R.id.tv_date_text)
+
+        private var shortDescriptionTV = view.findViewById<TextView>(R.id.tv_short_description)
         private var currentDate: FoodDate? = null
+
+
 
         init {
                 view.setOnClickListener{
@@ -47,6 +51,7 @@ class FoodAdapter(private val onDateClick: () -> Unit)
         fun bind(foodDate: FoodDate){
             currentDate = foodDate
             foodDateTV.text = foodDate.text
+            shortDescriptionTV.text = "Short Desc"
         }
     }
 }

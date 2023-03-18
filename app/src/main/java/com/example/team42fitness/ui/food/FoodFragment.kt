@@ -47,8 +47,10 @@ class FoodFragment : Fragment(R.layout.fragment_food) {
 
         val dates: List<Date> = createDatesList()
 
+
+
         for (date in dates) {
-            adapter.addFoodDate(FoodDate(date.toString()))
+            adapter.addFoodDate(FoodDate(date.toLocaleString().toString().slice(0..11)))
         }
 
     }
@@ -72,8 +74,9 @@ class FoodFragment : Fragment(R.layout.fragment_food) {
         var date2: Date? = null
 
         try{
+
             date1 = dateFormat.parse("03-17-2023")
-            date2 = dateFormat.parse("03-31-2023")
+            date2 = dateFormat.parse("04-15-2023")
 
 
         }catch (e: ParseException){
@@ -82,6 +85,8 @@ class FoodFragment : Fragment(R.layout.fragment_food) {
 
         calender.time = date1
         calender2.time = date2
+
+
 
         while(!calender.after(calender2)){
             datesList.add(calender.time)

@@ -39,9 +39,18 @@
         android:id="@+id/food_data"
         android:name="com.example.team42fitness.ui.food.FoodDataFragment"
         android:label="Food Data">
-        <argument
-            android:name="fooddate"
-            app:argType="com.example.team42fitness.data.foodData.FoodDate"/>
+        <action
+            android:id="@+id/navigate_to_search_food"
+            app:destination="@+id/food_search"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/food_search"
+        android:name="com.example.team42fitness.ui.food.FoodSearchFragment"
+        android:label="Search For Food to Add"
+        >
+
+
     </fragment>
 
 </navigation>

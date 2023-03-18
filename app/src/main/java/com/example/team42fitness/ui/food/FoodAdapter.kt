@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.team42fitness.R
 import com.example.team42fitness.data.foodData.FoodDate
 
-class FoodAdapter(private val onDateClick: (FoodDate) -> Unit)
+class FoodAdapter(private val onDateClick: () -> Unit)
     : Adapter<FoodAdapter.FoodDateViewHolder>() {
 
     private val foodDates: MutableList<FoodDate> = mutableListOf()
@@ -29,17 +29,18 @@ class FoodAdapter(private val onDateClick: (FoodDate) -> Unit)
     }
 
     fun addFoodDate(foodDate: FoodDate){
-        foodDates.add(0, foodDate)
+        foodDates.add(foodDate)
         notifyItemInserted(0)
     }
 
-    class FoodDateViewHolder(view: View, private val onClick: (FoodDate) -> Unit): RecyclerView.ViewHolder(view){
+    class FoodDateViewHolder(view: View, private val onClick: () -> Unit): RecyclerView.ViewHolder(view){
         private val foodDateTV = view.findViewById<TextView>(R.id.tv_date_text)
         private var currentDate: FoodDate? = null
 
         init {
                 view.setOnClickListener{
-                currentDate?.let(onClick)
+//                currentDate?.let(onClick)
+                    onClick()
             }
         }
 

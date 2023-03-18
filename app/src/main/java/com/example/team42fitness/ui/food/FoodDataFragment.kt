@@ -17,15 +17,17 @@ class FoodDataFragment: Fragment(R.layout.fragment_food_data) {
 
 
 
-        val addFoodBtn = view.findViewById<Button>(R.id.btn_add_food_data)
+        val addFoodBtn = view.findViewById<Button>(R.id.btn_add_food_data) //change name here
 
         val foodDateListRV: RecyclerView = view.findViewById(R.id.rv_food_data)
         foodDateListRV.layoutManager = LinearLayoutManager(requireContext())
         foodDateListRV.setHasFixedSize(true)
 
-//        val adapter = FoodDataAdapter(::onFoodSearchClick)
-//        foodDateListRV.adapter = adapter
+        val adapter = FoodDataAdapter2() // create new adapter
+        foodDateListRV.adapter = adapter
 
+
+        adapter.updateFoodItems(dummyResults)
 
         addFoodBtn.setOnClickListener{
 
@@ -43,4 +45,21 @@ class FoodDataFragment: Fragment(R.layout.fragment_food_data) {
         val directions = FoodDataFragmentDirections.navigateToSearchFood()
         findNavController().navigate(directions)
     }
+
+    private val dummyResults = listOf(
+        FoodData(1, "desc 1", "category 1"),
+        FoodData(2, "desc 2", "category 2"),
+        FoodData(3, "desc 3", "category 3"),
+        FoodData(4, "desc 4", "category 4"),
+        FoodData(5, "desc 5", "category 5"),
+        FoodData(6, "desc 6", "category 6"),
+        FoodData(7, "desc 7", "category 7"),
+        FoodData(8, "desc 8", "category 8"),
+        FoodData(9, "desc 9", "category 9"),
+        FoodData(10, "desc 10", "category 10"),
+        FoodData(12, "desc 11", "category 11"),
+
+
+
+        )
 }

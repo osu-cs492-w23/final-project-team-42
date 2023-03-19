@@ -22,4 +22,10 @@
         android:name="com.example.team42fitness.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_location"
+        android:name="com.example.team42fitness.ui.fitness.LocationFragment"
+        android:label="@string/menu_locations"
+        tools:layout="@layout/fragment_location" />
 </navigation>

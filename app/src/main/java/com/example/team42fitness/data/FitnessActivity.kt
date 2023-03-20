@@ -10,5 +10,5 @@ class FitnessActivity(
     val name: String,
     val duration: Int,
     val caloriesBurned: Int,
-    val date: Long
+    val date: String
     ) : java.io.Serializable

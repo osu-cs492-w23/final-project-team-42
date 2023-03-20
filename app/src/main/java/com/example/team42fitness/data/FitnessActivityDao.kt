@@ -17,15 +17,22 @@ interface FitnessActivityDao {
     @Query("SELECT * FROM FitnessActivity")
     fun getAllActivities(): Flow<List<FitnessActivity>>
 
-    @Query("SELECT SUM(caloriesBurned) / 7 " +
+    @Query("SELECT" +
+           "    SUM(caloriesBurned) /" +
+           "        CASE " +
+           "            WHEN :weekOffset > 0 THEN 7 " +
+           "            ELSE 1 + cast(strftime('%w', date) as int) " +
+           "        END " +
            "FROM FitnessActivity " +
-           "GROUP BY WEEK(date) " +
-           "HAVING WEEK(date) == :weekOffset")
+           "GROUP BY strftime('%W', date) " +
+           "HAVING cast(strftime('%W', date) as int) + :weekOffset = " +
+           "    cast(strftime('%W', DATE('now')) as int)")
     fun getAverageDailyCaloriesByWeek(weekOffset: Int): Flow<Int>
 
-    @Query("SELECT COUNT(id) / 7 " +
+    @Query("SELECT COUNT(id) " +
             "FROM FitnessActivity " +
-            "GROUP BY WEEK(date) " +
-            "HAVING WEEK(date) == :weekOffset")
+            "GROUP BY strftime('%W', date) " +
+            "HAVING cast(strftime('%W', date) as int) + :weekOffset = " +
+            "    cast(strftime('%W', DATE('now')) as int)")
     fun getActivityCountByWeek(weekOffset: Int): Flow<Int>
 }

@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.example.team42fitness.data.StepCounter
 import com.example.team42fitness.databinding.ActivityMainBinding
 
 const val FOODDATA_CENTRAL_APPID = BuildConfig.FOODDATA_CENTRAL_API_KEY
@@ -43,6 +44,9 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        //val stepCounter = StepCounter(this)
+        //stepCounter.startRecording()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

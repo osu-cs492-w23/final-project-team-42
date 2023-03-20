@@ -33,8 +33,10 @@
         <action
             android:id="@+id/navigate_to_food_data"
             app:destination="@+id/food_data"
-            app:enterAnim="@anim/slide_in"
-            app:exitAnim="@anim/fade_out" />
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
     </fragment>
 
     <fragment
@@ -44,10 +46,10 @@
         <action
             android:id="@+id/navigate_to_search_food"
             app:destination="@+id/food_search"
-            app:enterAnim="@anim/slide_in"
-            app:exitAnim="@anim/slide_out"
-            app:popEnterAnim="@anim/slide_in"
-            app:popExitAnim="@anim/slide_out" />
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
 
     <fragment

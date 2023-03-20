@@ -107,10 +107,10 @@ class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>(){
         private var currentFoodItem: FoodItem? = null
 
         init {
-//                foodImg.animate().apply {
-//                    duration = 1000
-//                    rotationXBy(360f)
-//                }
+                foodImg.animate().apply {
+                    duration = 1000
+                    rotationXBy(360f)
+                }
         }
 
         fun bind(foodItem: FoodItem){

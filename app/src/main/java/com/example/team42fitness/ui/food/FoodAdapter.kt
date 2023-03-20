@@ -43,7 +43,6 @@ class FoodAdapter(private val onDateClick: () -> Unit)
 
         init {
                 view.setOnClickListener{
-//                currentDate?.let(onClick)
                     onClick()
             }
         }

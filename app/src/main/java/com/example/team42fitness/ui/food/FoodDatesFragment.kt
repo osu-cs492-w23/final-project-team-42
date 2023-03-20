@@ -1,13 +1,7 @@
 package com.example.team42fitness.ui.food
 
-import android.content.Intent
 import android.os.Bundle
-import android.text.TextUtils
-import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -23,16 +17,17 @@ import java.util.*
 
 /*
 this will be the main page of the list of food. it will display a list (using recyclerview) of days and a short
-* description of the food eaten or nutrition. each item in the list will be clickable to display another fragment of
+* description (maybe of food eaten or nutrition values). each item in the list will be clickable to display another fragment of
 * each food items added for that day.
 * */
-class FoodFragment : Fragment(R.layout.fragment_food) {
+class FoodDatesFragment : Fragment(R.layout.fragment_food) {
     private val viewModel: FoodViewModel by viewModels()
 
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         createDatesList()
 
@@ -56,7 +51,8 @@ class FoodFragment : Fragment(R.layout.fragment_food) {
     }
 
     private fun onFoodDateItemClick(){
-        val directions = FoodFragmentDirections.navigateToFoodData()
+        val directions = FoodDatesFragmentDirections.navigateToFoodData()
+
         findNavController().navigate(directions)
     }
 
@@ -95,4 +91,11 @@ class FoodFragment : Fragment(R.layout.fragment_food) {
 
         return datesList
     }
+
+
+
+
 }
+
+
+

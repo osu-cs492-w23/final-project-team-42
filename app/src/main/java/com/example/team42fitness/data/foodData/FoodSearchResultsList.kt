@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
-data class FoodItems(
-    @Json(name = "foods") val foodsList: List<FoodData>
+data class FoodSearchResultsList(
+    @Json(name = "foods") val foodsList: List<FoodItem>
 )
 

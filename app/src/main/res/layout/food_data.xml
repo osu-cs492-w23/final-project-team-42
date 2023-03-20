@@ -22,14 +22,29 @@
         android:textAppearance="?attr/textAppearanceHeadline5"
         android:layout_marginStart="32dp"
         android:padding="16dp"/>
-
-    <TextView
-        android:id="@+id/tv_food_category"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?attr/textAppearanceHeadline5"
-        android:padding="16dp"
-        android:layout_gravity="right"/>
+        android:layout_gravity="right">
+        <TextView
+            android:id="@+id/tv_food_nutrient_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"/>
+
+        <TextView
+            android:id="@+id/tv_food_nutrient_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"/>
+
+        <TextView
+            android:id="@+id/tv_food_nutrient_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"/>
+    </LinearLayout>
+
 
 
 

@@ -22,4 +22,41 @@
         android:name="com.example.team42fitness.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+
+    <fragment
+        android:id="@+id/nav_food"
+        android:name="com.example.team42fitness.ui.food.FoodDatesFragment"
+        android:label="@string/menu_food"
+        tools:layout="@layout/fragment_food">
+
+        <action
+            android:id="@+id/navigate_to_food_data"
+            app:destination="@+id/food_data"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/food_data"
+        android:name="com.example.team42fitness.ui.food.NutritionFragment"
+        android:label="Food Data">
+        <action
+            android:id="@+id/navigate_to_search_food"
+            app:destination="@+id/food_search"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/slide_out"
+            app:popEnterAnim="@anim/slide_in"
+            app:popExitAnim="@anim/slide_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/food_search"
+        android:name="com.example.team42fitness.ui.food.FoodSearchFragment"
+        android:label="Search For Food to Add"
+        >
+
+
+    </fragment>
+
 </navigation>

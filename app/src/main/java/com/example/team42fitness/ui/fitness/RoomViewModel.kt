@@ -8,10 +8,16 @@ import com.example.team42fitness.data.fitnessData.LocationData
 import com.example.team42fitness.data.fitnessData.LocationRepository
 import kotlinx.coroutines.launch
 
-class ClickedDayViewModel(application: Application): AndroidViewModel(application)
+/**
+ * AndroidViewModel to communicate with db
+ */
+class RoomViewModel(application: Application): AndroidViewModel(application)
 {
     private val repository = LocationRepository(AppDatabase.getInstance(application).locationDao() )
 
+    /**
+     * If I get to the embedded map object functionality I would like to have, use this I think
+     */
     val locationEntries = repository.getAllLocationEntries()
 
     fun addLocationEntry(location: LocationData)

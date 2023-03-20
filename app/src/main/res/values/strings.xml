@@ -13,4 +13,6 @@
     <string name="menu_locations">Locations</string>
 
     <string name="label_clicked_day">Daily Lookback</string>
+
+    <string name="desc_clicked_day">Looking back through your day, enter all the places you went to.</string>
 </resources>

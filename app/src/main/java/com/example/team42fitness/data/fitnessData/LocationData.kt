@@ -10,5 +10,6 @@ import androidx.room.PrimaryKey
 data class LocationData
 (
 //    val index: Int,
-    @PrimaryKey val locationName: String
+    @PrimaryKey val day: String,
+    val locationName: String
 )

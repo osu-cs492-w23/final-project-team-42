@@ -1,5 +1,6 @@
 package com.example.team42fitness.ui.fitness
 
+import android.content.ContentValues.TAG
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -11,10 +12,12 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
+import com.example.team42fitness.data.fitnessData.LocationData
 import com.example.team42fitness.data.fitnessData.LocationDate
 import com.example.team42fitness.databinding.FragmentGalleryBinding
 import com.example.team42fitness.ui.gallery.GalleryViewModel
@@ -34,7 +37,7 @@ import java.util.Date
  */
 class LocationFragment : Fragment(R.layout.fragment_location)
 {
-    private val TAG="LocationFragment.kt"
+    private val TAG = "LocationFragment.kt"
 
     private val viewModel: LocationViewModel by viewModels()
     private val locationAdapter = LocationAdapter(::onLocationDateItemClick)
@@ -55,14 +58,21 @@ class LocationFragment : Fragment(R.layout.fragment_location)
         locationDateRV.adapter = locationAdapter
 
 
+//        var counter = 1
+
         /**
          * Populate recyclerview (for now, not sure if may change later)
          */
-        val listDates: List<Date> = populateList(start="03-19-2023", end="04-02-2023")
+//        if (counter == 1) {
+        val listDates: List<String> = populateList(start = "03-19-2023", end = "04-02-2023")
         for (day in listDates)
         {
-            locationAdapter.addDate(LocationDate(day.toString()))
+            locationAdapter.addDate(LocationDate(day))
+            Log.d(TAG, day)
         }
+//            counter += 1
+
+
 
     }
 
@@ -70,31 +80,27 @@ class LocationFragment : Fragment(R.layout.fragment_location)
 
     // https://stackoverflow.com/questions/11412713/generate-dates-between-two-date-in-android
     // https://www.baeldung.com/kotlin/string-to-date
-    private fun populateList(start: String, end: String): MutableList<Date>
+    private fun populateList(start: String, end: String): MutableList<String>
     {
         val startOfCal = Calendar.getInstance()
         val endOfCal = Calendar.getInstance()
 
-        val listOfDates: MutableList<Date> = mutableListOf()
+        val listOfDates: MutableList<String> = mutableListOf()
+
         val formatDate = SimpleDateFormat("MM-dd-yyyy")
 
-//        val formatDayOfWeek = SimpleDateFormat("EEEE")
-//        val formatMonth = SimpleDateFormat("MMM")
-//        val formatDay = SimpleDateFormat("dd")
 
          startOfCal.time = formatDate.parse(start)
          endOfCal.time = formatDate.parse(end)
 
-//        val dayOfWeek = startOfCal.get(Calendar.DAY_OF_WEEK)
-//        val month = startOfCal.get(Calendar.MONTH)
-//        val dayOfMonth = startOfCal.get(Calendar.DAY_OF_MONTH)
-//
-//        val fullText = "$dayOfWeek $month $dayOfMonth"
-
 
         while(startOfCal.before(endOfCal))
         {
-            listOfDates.add(startOfCal.time)
+            val stringToTokenize: String = startOfCal.time.toString()
+            val tokensInArray: List<String> = stringToTokenize.split(" ")
+            val stringIWant: String = tokensInArray[0] + " " + tokensInArray[1] + " " + tokensInArray[2]
+
+            listOfDates.add(stringIWant)
             startOfCal.add(Calendar.DATE, 1)
         }
 

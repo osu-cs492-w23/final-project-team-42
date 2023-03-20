@@ -11,20 +11,13 @@ import com.example.team42fitness.R
 import com.example.team42fitness.data.fitnessData.LocationDate
 
 /**
- * For use with LocationViewModel
+ * For use with LocationViewModel, which is used in main screen for location entry feature
  */
 class LocationAdapter(private val onClick: (LocationDate) -> Unit) : RecyclerView.Adapter<LocationAdapter.ViewHolder>()
 {
     private val locationDates: MutableList<LocationDate> = mutableListOf()
 
-    /**
-     * For functionality about adding a day to the list (in the works / not sure if will add that)
-     */
-    fun addDate(locationDate: LocationDate)
-    {
-        locationDates.add(locationDate)
-        // notifyItemChanged(0)
-    }
+
 
     override fun getItemCount() = this.locationDates.size
 
@@ -37,6 +30,17 @@ class LocationAdapter(private val onClick: (LocationDate) -> Unit) : RecyclerVie
     override fun onBindViewHolder(holder: ViewHolder, position: Int)
     {
         holder.bind(this.locationDates[position])
+    }
+
+
+    /**
+     * For adding a day to the list in the main screen for location entry feature. Currently pre-populating list.
+     */
+    fun addDate(locationDate: LocationDate)
+    {
+        locationDates.add(locationDate)
+        //notifyDataSetChanged()
+        // notifyItemChanged(0)
     }
 
 
@@ -54,7 +58,7 @@ class LocationAdapter(private val onClick: (LocationDate) -> Unit) : RecyclerVie
         fun bind(locationDate: LocationDate)
         {
             specifiedDate = locationDate
-            dateTV.text = locationDate.locationDateText
+            dateTV.text = locationDate.date
 
         }
     }

@@ -9,17 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
 import com.example.team42fitness.data.fitnessData.LocationData
 
+/**
+ * For use with ClickedDayViewModel...
+ */
 class ClickedDayAdapter(private val onClick: (LocationData) -> Unit) : RecyclerView.Adapter<ClickedDayAdapter.ViewHolder>()
 {
     private val locationEntries: MutableList<LocationData> = mutableListOf()
 
 
 
-    fun addLocationEntry(locationEntry: LocationData)
-    {
-        locationEntries.add(locationEntry)
-        // notifyItemInserted(0)
-    }
+
 
     override fun getItemCount() = this.locationEntries.size
 
@@ -35,18 +34,27 @@ class ClickedDayAdapter(private val onClick: (LocationData) -> Unit) : RecyclerV
     }
 
 
+    fun addLocationEntry(locationEntry: LocationData)
+    {
+        locationEntries.add(locationEntry)
+        //notifyDataSetChanged()
+        // notifyItemInserted()
+    }
+
 
     class ViewHolder(itemView: View, val onClick: (LocationData) -> Unit) : RecyclerView.ViewHolder(itemView)
     {
         private val locationTV = itemView.findViewById<TextView>(R.id.tv_clicked_day_text)
 
+        private lateinit var currLocationEntry: LocationData
         init
         {
-            itemView.setOnClickListener {  }
+            itemView.setOnClickListener { currLocationEntry.let(onClick) }
         }
 
         fun bind(locationEntry: LocationData)
         {
+            currLocationEntry = locationEntry
             locationTV.text = locationEntry.locationName
         }
     }

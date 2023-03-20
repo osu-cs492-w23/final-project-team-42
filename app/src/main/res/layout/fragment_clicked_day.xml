@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:textSize="22dp"
         android:textAppearance="?attr/textAppearanceHeadlineMedium"
+        android:text="@string/desc_clicked_day"
     />
 
     <EditText

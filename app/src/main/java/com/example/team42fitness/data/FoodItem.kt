@@ -6,17 +6,9 @@ import com.squareup.moshi.ToJson
 import java.io.Serializable
 
 class FoodItem (
-    val fdcId: Int,
-    val description: String,
-        ) : Serializable
-
-/* ******************************************************************************************
- * Below is a set of classes used to parse the JSON response from the OpenWeather API into
- * a ForecastPeriod object.  The first several classes are designed to match the structure
- * of one element of the `list` field in the OpenWeather 5-day forecast API's JSON response.
- * The last is a custom type adapter that can be used with Moshi to parse OpenWeather JSON
- * directly into a ForecastPeriod object.
- * ******************************************************************************************/
+        val fdcId: Int,
+        val description: String,
+) : Serializable
 
 //SearchResultFood:
 //      type: object
@@ -39,10 +31,10 @@ class FoodItem (
 //              foodCode:
 //                      description: Any A unique ID identifying the food within FNDDS.
 //                      type: string
-//                      foodNutrients:
-//              type: array
-//                      items:
-//                      $ref: '#/components/schemas/AbridgedFoodNutrient'
+//              foodNutrients:
+//                      type: array
+//                              items:
+//                              $ref: '#/components/schemas/AbridgedFoodNutrient'
 //              publicationDate:
 //                      description: Date the item was published to FDC.
 //                      type: string
@@ -82,11 +74,11 @@ class FoodItem (
 @JsonClass(generateAdapter = true)
 data class FoodDataPropertiesJson(
         val fdcId: Int, // Unique ID of the food
-        val dataType: String, // type of food data Ex: "Branded"
         val description: String, // The Description of the food
+        val ingredients: String,
         val additionalDescriptions: String, // Any additional descriptions of the food
         val score: Float, // relative score indicating how well the food matches the search
-)
+) : Serializable
 
 //@JsonClass(generateAdapter = true)
 //data class FoodDataPropertiesFoodNutrientsJson(

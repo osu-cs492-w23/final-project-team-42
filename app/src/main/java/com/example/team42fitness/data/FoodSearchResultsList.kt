@@ -23,6 +23,7 @@ import com.squareup.moshi.JsonClass
 //              items:
 //              $ref: '#/components/schemas/SearchResultFood'
 
+@JsonClass(generateAdapter = true)
 data class FoodSearchResultsList(
-    @Json(name = "items") val foods: List<FoodItem>,
-)
+    @Json(name = "foods") val foods: List<FoodItem>,
+) : java.io.Serializable

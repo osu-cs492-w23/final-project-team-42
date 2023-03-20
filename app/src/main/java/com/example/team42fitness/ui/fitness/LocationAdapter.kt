@@ -39,7 +39,7 @@ class LocationAdapter(private val onClick: (LocationDate) -> Unit) : RecyclerVie
     fun addDate(locationDate: LocationDate)
     {
         locationDates.add(locationDate)
-        //notifyDataSetChanged()
+        notifyDataSetChanged()
         // notifyItemChanged(0)
     }
 

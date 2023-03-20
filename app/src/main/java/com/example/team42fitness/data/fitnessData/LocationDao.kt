@@ -20,10 +20,12 @@ interface LocationDao
     // (1) have method to delete entry
     // (2) and later to get a specific entry (probably for intent for clicked entry, unless it can be handled elsewhere)
 
-
     /**
      * Grab all the location entries entered by user from database
      */
     @Query("SELECT * FROM LocationData")
     fun getAllLocationEntries(): Flow<List<LocationData>>
+
+    @Query("SELECT * FROM LocationData WHERE day == :date")
+    fun getLocationEntriesFromSpecificDay(date: String): Flow<List<LocationData>>
 }

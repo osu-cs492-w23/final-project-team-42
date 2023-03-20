@@ -37,7 +37,7 @@ class ClickedDayAdapter(private val onClick: (LocationData) -> Unit) : RecyclerV
     fun addLocationEntry(locationEntry: LocationData)
     {
         locationEntries.add(locationEntry)
-        //notifyDataSetChanged()
+        notifyDataSetChanged()
         // notifyItemInserted()
     }
 

@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
 @Entity
 data class LocationData
 (
-//    val index: Int,
-    @PrimaryKey val day: String,
+    @PrimaryKey val index: Int,
+    val day: String,
     val locationName: String
 )

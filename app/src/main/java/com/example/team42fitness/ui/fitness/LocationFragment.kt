@@ -44,6 +44,7 @@ class LocationFragment : Fragment(R.layout.fragment_location)
 
     private lateinit var locationDateRV: RecyclerView
 
+    private var counter = 1
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
@@ -58,19 +59,20 @@ class LocationFragment : Fragment(R.layout.fragment_location)
         locationDateRV.adapter = locationAdapter
 
 
-//        var counter = 1
+
 
         /**
          * Populate recyclerview (for now, not sure if may change later)
          */
-//        if (counter == 1) {
-        val listDates: List<String> = populateList(start = "03-19-2023", end = "04-02-2023")
-        for (day in listDates)
+        if (counter == 1)
         {
-            locationAdapter.addDate(LocationDate(day))
-            Log.d(TAG, day)
+            val listDates: List<String> = populateList(start = "03-19-2023", end = "04-02-2023")
+            for (day in listDates) {
+                locationAdapter.addDate(LocationDate(day))
+                Log.d(TAG, day)
+            }
         }
-//            counter += 1
+            counter += 1
 
 
 

@@ -9,4 +9,6 @@ class LocationRepository(private val dao: LocationDao)
     // (2) and later to get a specific entry (probably for intent for clicked entry, unless it can be handled elsewhere)
 
     fun getAllLocationEntries() = dao.getAllLocationEntries()
+
+    fun getLocationEntriesFromSpecificDay(date: String) = dao.getLocationEntriesFromSpecificDay(date)
 }

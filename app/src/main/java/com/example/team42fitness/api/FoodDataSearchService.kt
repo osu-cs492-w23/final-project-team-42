@@ -12,14 +12,15 @@ import retrofit2.http.Query
 
 interface FoodDataSearchService {
 
-    @GET("foods")
+    @GET("search")
     suspend fun loadFoodResults(
         @Query("query") query: String?,
-        @Query("appid") apiKey: String = "fzLMJqmkWeci3bkjhONuhFt4M9ZjGc6rwj1jCBfQ"
+        @Query("api_key") apiKey: String = "fzLMJqmkWeci3bkjhONuhFt4M9ZjGc6rwj1jCBfQ",
+        @Query("pageSize") size: Int = 1
     ) : Response<FoodSearchResultsList>
 
     companion object {
-        private const val BASE_URL = "https://api.nal.usda.gov/fdc/"
+        private const val BASE_URL = "https://api.nal.usda.gov/fdc/v1/foods/"
 
 
         fun create() : FoodDataSearchService {

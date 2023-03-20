@@ -59,7 +59,7 @@ class FoodSearchFragment: Fragment(R.layout.fragment_food_search) {
 //        foodDataSearchService.loadFoodResults(q, "fzLMJqmkWeci3bkjhONuhFt4M9ZjGc6rwj1jCBfQ")
 //    }
 
-    private val dummyResults = listOf(
+    private val dummyResults = mutableListOf(
         FoodItem(1, "desc 1", Nutrients("Calories", "KCAL", 200f)),
         FoodItem(2, "desc 2", Nutrients("Calories", "KCAL", 200f)),
         FoodItem(3, "desc 3", Nutrients("Calories", "KCAL", 200f)),

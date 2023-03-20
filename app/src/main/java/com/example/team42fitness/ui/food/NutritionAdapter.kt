@@ -20,6 +20,8 @@ class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
 
     fun updateFoodItems(newFoodItemList: List<FoodItem>?){
         foodItem = newFoodItemList ?: listOf()
+        notifyDataSetChanged()
+
     }
 
     override fun getItemCount() = foodItem.size
@@ -69,6 +71,7 @@ class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>(){
 
     fun updateFoodItems(newFoodItemList: List<FoodItem>?){
         foodItem = newFoodItemList ?: listOf()
+        notifyDataSetChanged()
     }
 
     override fun getItemCount() = foodItem.size
@@ -104,18 +107,18 @@ class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>(){
         private var currentFoodItem: FoodItem? = null
 
         init {
-                foodImg.animate().apply {
-                    duration = 1000
-                    rotationXBy(360f)
-                }
+//                foodImg.animate().apply {
+//                    duration = 1000
+//                    rotationXBy(360f)
+//                }
         }
 
         fun bind(foodItem: FoodItem){
             currentFoodItem = foodItem
             foodName.text = foodItem.description
-            nutrientName.text = foodItem.nutrients.name
-            nutrientUnit.text = foodItem.nutrients.unit
-            nutrientAmount.text = foodItem.nutrients.amount.toString()
+            nutrientName.text = foodItem.nutrients?.name
+            nutrientUnit.text = foodItem.nutrients?.unit
+            nutrientAmount.text = foodItem.nutrients?.amount.toString()
 
         }
     }

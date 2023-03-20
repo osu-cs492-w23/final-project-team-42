@@ -113,9 +113,10 @@ class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>(){
         fun bind(foodItem: FoodItem){
             currentFoodItem = foodItem
             foodName.text = foodItem.description
-            nutrientName.text = foodItem.nutrients.name
-            nutrientUnit.text = foodItem.nutrients.unit
-            nutrientAmount.text = foodItem.nutrients.amount.toString()
+            nutrientName.text = foodItem.nutrients[0].name
+            nutrientUnit.text = foodItem.nutrients[0].unit
+            nutrientAmount.text = foodItem.nutrients[0].amount.toString()
+            // TODO("shift nutrients to handle a variable list of nutrients rather than a fixed quantity")
 
         }
     }

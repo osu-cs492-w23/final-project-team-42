@@ -27,7 +27,7 @@ interface FoodDataSearchService {
      */
     @GET("foods/search")
     suspend fun searchForFood(
-        @Query("query") foodQuery: String = "Cheese",
+        @Query("query") foodQuery: String? = "Cheese",
         @Query("appid") apiKey: String
     ) : Response<FoodSearchResultsList>
 

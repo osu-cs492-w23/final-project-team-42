@@ -16,7 +16,7 @@ class FoodItem (
         val description: String,
 
         @Json(name="foodNutrients")
-        val nutrients: List<Nutrients>,
+        val nutrients: List<Nutrient>,
 ) : Serializable
 
 //SearchResultFood:
@@ -87,22 +87,44 @@ data class FoodDataPropertiesJson(
         val ingredients: String,
         val additionalDescriptions: String, // Any additional descriptions of the food
         val score: Float, // relative score indicating how well the food matches the search
-        val nutrients: List<Nutrients>
+        val nutrients: List<Nutrient>
 ) : Serializable
 
-//@JsonClass(generateAdapter = true)
-//data class FoodDataPropertiesFoodNutrientsJson(
-//        val items: listOf(String)
-//)
+//AbridgedFoodNutrient:
+//  required:
+//      - id
+//      - nutrientNumber
+//      - unit
+//  properties:
+//      number:
+//          type: integer
+//          format: uint
+//          example: 303
+//      name:
+//          type: string
+//          example: "Iron, Fe"
+//      amount:
+//          type: number
+//          format: float
+//          example: 0.53
+//      unitName:
+//          type: string
+//          example: "mg"
+//      derivationCode:
+//          type: string
+//          example: "LCCD"
+//      derivationDescription:
+//          type: string
+//          example: "Calculated from a daily value percentage per serving size measure"
 @JsonClass(generateAdapter = true)
-data class Nutrients (
+data class Nutrient (
     @Json(name="nutrientName")
     val name: String,
 
     @Json(name="unitName")
     val unit: String,
 
-    @Json(name="value")
+    @Json(name="amount")
     val amount: Float,
 
     ): Serializable

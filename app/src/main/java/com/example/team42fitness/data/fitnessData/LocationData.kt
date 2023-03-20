@@ -9,6 +9,6 @@ import androidx.room.PrimaryKey
 @Entity
 data class LocationData
 (
-    @PrimaryKey val index: Int,
-    val locationName: String
+//    val index: Int,
+    @PrimaryKey val locationName: String
 )

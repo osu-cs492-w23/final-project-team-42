@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- to be used by LocationAdapter in ui folder for RecyclerView in main screen -->
+<!-- to be used by ClickedDayAdapter in ui folder for RecyclerView in screen when user clicks specific day -->
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,7 +9,7 @@
 
     <!--  https://stackoverflow.com/questions/25279715/android-how-to-add-icon-at-the-left-side-of-the-textview  -->
     <TextView
-        android:id="@+id/tv_location_date_text"
+        android:id="@+id/tv_clicked_day_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="20dp"
@@ -17,7 +17,7 @@
         android:drawableLeft="@drawable/baseline_location_on_24"
         android:drawablePadding="10dp"
 
-    />
+        />
 
 
 

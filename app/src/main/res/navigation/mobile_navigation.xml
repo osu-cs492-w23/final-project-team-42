@@ -27,5 +27,26 @@
         android:id="@+id/nav_location"
         android:name="com.example.team42fitness.ui.fitness.LocationFragment"
         android:label="@string/menu_locations"
-        tools:layout="@layout/fragment_location" />
+        tools:layout="@layout/fragment_location" >
+
+        <action
+            android:id="@+id/navigate_to_clicked_day"
+            app:destination="@+id/clicked_day"
+        />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/clicked_day"
+        android:name="com.example.team42fitness.ui.fitness.ClickedDayFragment"
+        android:label="@string/label_clicked_day"
+        tools:layout="@layout/fragment_clicked_day"
+    >
+        <argument
+            android:name="locationDate"
+            app:argType="com.example.team42fitness.data.fitnessData.LocationDate"
+        />
+
+    </fragment>
+
 </navigation>

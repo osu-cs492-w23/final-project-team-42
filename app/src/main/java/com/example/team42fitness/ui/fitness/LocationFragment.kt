@@ -1,14 +1,17 @@
 package com.example.team42fitness.ui.fitness
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
@@ -17,6 +20,7 @@ import com.example.team42fitness.databinding.FragmentGalleryBinding
 import com.example.team42fitness.ui.gallery.GalleryViewModel
 import java.text.DateFormat
 import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Date
 
@@ -72,11 +76,21 @@ class LocationFragment : Fragment(R.layout.fragment_location)
         val endOfCal = Calendar.getInstance()
 
         val listOfDates: MutableList<Date> = mutableListOf()
-        val formatDate: DateFormat = SimpleDateFormat("MM-dd-yyyy")
+        val formatDate = SimpleDateFormat("MM-dd-yyyy")
 
+//        val formatDayOfWeek = SimpleDateFormat("EEEE")
+//        val formatMonth = SimpleDateFormat("MMM")
+//        val formatDay = SimpleDateFormat("dd")
 
-        startOfCal.time = formatDate.parse(start)
-        endOfCal.time = formatDate.parse(end)
+         startOfCal.time = formatDate.parse(start)
+         endOfCal.time = formatDate.parse(end)
+
+//        val dayOfWeek = startOfCal.get(Calendar.DAY_OF_WEEK)
+//        val month = startOfCal.get(Calendar.MONTH)
+//        val dayOfMonth = startOfCal.get(Calendar.DAY_OF_MONTH)
+//
+//        val fullText = "$dayOfWeek $month $dayOfMonth"
+
 
         while(startOfCal.before(endOfCal))
         {
@@ -94,7 +108,8 @@ class LocationFragment : Fragment(R.layout.fragment_location)
     {
         Log.d(TAG, "onLocationDateItemClick() called, locationDate: $locationDate")
 
-        // val directions = .
+        val directions = LocationFragmentDirections.navigateToClickedDay(locationDate)
+        findNavController().navigate(directions)
     }
 
 

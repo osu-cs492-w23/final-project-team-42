@@ -83,30 +83,6 @@ data class FoodItem(
 /**
  * This class represents an item in the `list` field of the JSON response from the FoodData Central API.
  */
-@JsonClass(generateAdapter = true)
-data class Nutrients (
-    @Json(name="nutrientName")
-    val name: String,
-
-    @Json(name="unitName")
-    val unit: String,
-
-    @Json(name="amount")
-    val amount: Float,
-
-    ): Serializable
-    
-@JsonClass(generateAdapter = true)
-data class FoodDataPropertiesJson(
-    val fdcId: Int, // Unique ID of the food
-    val description: String, // The Description of the food
-    val ingredients: String?,
-    val additionalDescriptions: String?, // Any additional descriptions of the food
-    val score: Float?, // relative score indicating how well the food matches the search
-    val foodNutrients: List<Nutrients>,
-    val brandName: String
-)
-
 //AbridgedFoodNutrient:
 //  required:
 //      - id
@@ -133,6 +109,31 @@ data class FoodDataPropertiesJson(
 //      derivationDescription:
 //          type: string
 //          example: "Calculated from a daily value percentage per serving size measure"
+@JsonClass(generateAdapter = true)
+data class Nutrients (
+    @Json(name="nutrientName")
+    val name: String,
+
+    @Json(name="unitName")
+    val unit: String,
+
+    @Json(name="value") // api spec seems to be misleading
+    val amount: Float,
+
+    ): Serializable
+    
+@JsonClass(generateAdapter = true)
+data class FoodDataPropertiesJson(
+    val fdcId: Int, // Unique ID of the food
+    val description: String, // The Description of the food
+    val ingredients: String?,
+    val additionalDescriptions: String?, // Any additional descriptions of the food
+    val score: Float?, // relative score indicating how well the food matches the search
+    val foodNutrients: List<Nutrients>,
+    val brandName: String
+)
+
+
 
 /**
  * This class is a custom JSON adapter for use with Moshi.  It uses the classes above to represent

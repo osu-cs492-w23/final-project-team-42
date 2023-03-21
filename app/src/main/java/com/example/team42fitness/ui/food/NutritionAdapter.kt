@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.team42fitness.data.foodData.FoodItem
+import com.example.team42fitness.data.foodData.FoodSearchResultsList
 
 class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
 
@@ -64,14 +65,14 @@ class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
 
 class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>(){
 
-    private var foodItem = listOf<FoodItem>()
+    private var foodList = listOf<FoodItem>()
 
 
-    fun updateFoodItems(newFoodItemList: List<FoodItem>?){
-        foodItem = newFoodItemList ?: listOf()
+    fun updateFoodItems(newFoodItemList: FoodSearchResultsList){
+        foodList = newFoodItemList.foods ?: listOf()
     }
 
-    override fun getItemCount() = foodItem.size
+    override fun getItemCount() = foodList.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NutritionViewHolder2{
         val view = LayoutInflater.from(parent.context).inflate(R.layout.food_data,
@@ -80,7 +81,7 @@ class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>(){
     }
 
     override fun onBindViewHolder(holder: NutritionViewHolder2, position: Int){
-        holder.bind(foodItem[position])
+        holder.bind(foodList[position])
 
     }
 

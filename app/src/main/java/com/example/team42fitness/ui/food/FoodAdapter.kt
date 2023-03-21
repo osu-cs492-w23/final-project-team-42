@@ -12,7 +12,6 @@ import com.example.team42fitness.data.foodData.FoodDate
 
 class FoodAdapter(private val onDateClick: () -> Unit)
     : Adapter<FoodAdapter.FoodDateViewHolder>() {
-
     private val foodDates: MutableList<FoodDate> = mutableListOf()
 
     override fun getItemCount() = foodDates.size
@@ -20,7 +19,6 @@ class FoodAdapter(private val onDateClick: () -> Unit)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodDateViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.food_list_item,
         parent, false)
-
         return FoodDateViewHolder(view, onDateClick)
     }
 
@@ -35,11 +33,8 @@ class FoodAdapter(private val onDateClick: () -> Unit)
 
     class FoodDateViewHolder(view: View, private val onClick: () -> Unit): RecyclerView.ViewHolder(view){
         private val foodDateTV = view.findViewById<TextView>(R.id.tv_date_text)
-
         private var shortDescriptionTV = view.findViewById<TextView>(R.id.tv_short_description)
         private var currentDate: FoodDate? = null
-
-
 
         init {
                 view.setOnClickListener{

@@ -9,15 +9,18 @@ import com.squareup.moshi.JsonClass
 import com.squareup.moshi.ToJson
 import java.io.Serializable
 
+
 @JsonClass(generateAdapter = true)
 @Entity
-class FoodItem (
-        val fdcId: Int,
-        val description: String,
+data class FoodItem(
+    @PrimaryKey
+    val fdcId: Int,
+    val description: String,
+    val brandName: String,
 
-        @Json(name="foodNutrients")
-        val nutrients: List<Nutrient>,
-) : Serializable
+    @Json(name="foodNutrients")
+    val nutrients: List<Nutrients>
+    ): Serializable
 
 //SearchResultFood:
 //      type: object
@@ -81,14 +84,28 @@ class FoodItem (
  * This class represents an item in the `list` field of the JSON response from the FoodData Central API.
  */
 @JsonClass(generateAdapter = true)
+data class Nutrient (
+    @Json(name="nutrientName")
+    val name: String,
+
+    @Json(name="unitName")
+    val unit: String,
+
+    @Json(name="amount")
+    val amount: Float,
+
+    ): Serializable
+    
+@JsonClass(generateAdapter = true)
 data class FoodDataPropertiesJson(
-        val fdcId: Int, // Unique ID of the food
-        val description: String, // The Description of the food
-        val ingredients: String,
-        val additionalDescriptions: String, // Any additional descriptions of the food
-        val score: Float, // relative score indicating how well the food matches the search
-        val nutrients: List<Nutrient>
-) : Serializable
+    val fdcId: Int, // Unique ID of the food
+    val description: String, // The Description of the food
+    val ingredients: String?,
+    val additionalDescriptions: String?, // Any additional descriptions of the food
+    val score: Float?, // relative score indicating how well the food matches the search
+    val foodNutrients: List<Nutrients>,
+    val brandName: String
+)
 
 //AbridgedFoodNutrient:
 //  required:
@@ -116,18 +133,6 @@ data class FoodDataPropertiesJson(
 //      derivationDescription:
 //          type: string
 //          example: "Calculated from a daily value percentage per serving size measure"
-@JsonClass(generateAdapter = true)
-data class Nutrient (
-    @Json(name="nutrientName")
-    val name: String,
-
-    @Json(name="unitName")
-    val unit: String,
-
-    @Json(name="amount")
-    val amount: Float,
-
-    ): Serializable
 
 /**
  * This class is a custom JSON adapter for use with Moshi.  It uses the classes above to represent
@@ -136,15 +141,16 @@ data class Nutrient (
  * JSON parsing.
  */
 class FoodListJsonAdapter {
-        @FromJson
-        fun FoodListFromJson(list: FoodDataPropertiesJson) = FoodItem(
-                fdcId = list.fdcId,
-                description = list.description,
-                nutrients = list.nutrients,
-        )
+    @FromJson
+    fun FoodListFromJson(list: FoodDataPropertiesJson) = FoodItem(
+        fdcId = list.fdcId,
+        description = list.description,
+        nutrients = list.foodNutrients,
+        brandName = list.brandName
+    )
 
-        @ToJson
-        fun FoodListToJson(food: FoodItem): String {
-                throw UnsupportedOperationException("encoding FoodItem to JSON is not supported")
-        }
+    @ToJson
+    fun FoodListToJson(food: FoodItem): String {
+        throw UnsupportedOperationException("encoding FoodItem to JSON is not supported")
+    }
 }

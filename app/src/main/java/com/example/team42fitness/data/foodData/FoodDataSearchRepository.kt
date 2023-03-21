@@ -23,11 +23,10 @@ class FoodDataSearchRepository (
      */
 
     suspend fun lookupFood(
-        query: String?,
-        apiKey: String
+        query: String?
     ): Result<FoodSearchResultsList?> = withContext(dispatcher) {
         try {
-            val response = service.searchForFood(query, apiKey)
+            val response = service.searchForFood(query)
             if (response.isSuccessful) {
                 Result.success(response.body())
             } else {
@@ -38,4 +37,3 @@ class FoodDataSearchRepository (
         }
     }
 }
-

@@ -1,5 +1,6 @@
 package com.example.team42fitness.data.foodData
 
+import com.example.team42fitness.data.foodData.FoodItem
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
@@ -22,8 +23,8 @@ import com.squareup.moshi.JsonClass
 //              type: array
 //              items:
 //              $ref: '#/components/schemas/SearchResultFood'
+
 @JsonClass(generateAdapter = true)
 data class FoodSearchResultsList(
     @Json(name = "foods") val foodsList: List<FoodItem>
 ) :java.io.Serializable
-

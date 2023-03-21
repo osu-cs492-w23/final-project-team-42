@@ -84,18 +84,18 @@ data class FoodItem(
  * This class represents an item in the `list` field of the JSON response from the FoodData Central API.
  */
 @JsonClass(generateAdapter = true)
-data class Nutrients (
+data class Nutrient (
     @Json(name="nutrientName")
     val name: String,
 
     @Json(name="unitName")
     val unit: String,
 
-    @Json(name="value")
+    @Json(name="amount")
     val amount: Float,
 
     ): Serializable
-
+    
 @JsonClass(generateAdapter = true)
 data class FoodDataPropertiesJson(
     val fdcId: Int, // Unique ID of the food
@@ -133,7 +133,6 @@ data class FoodDataPropertiesJson(
 //      derivationDescription:
 //          type: string
 //          example: "Calculated from a daily value percentage per serving size measure"
-
 
 /**
  * This class is a custom JSON adapter for use with Moshi.  It uses the classes above to represent

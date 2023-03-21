@@ -11,8 +11,11 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.example.team42fitness.api.LocationFetcher
+import com.example.team42fitness.api.StepCounter
 import com.example.team42fitness.databinding.ActivityMainBinding
 
+const val FOODDATA_CENTRAL_APPID = BuildConfig.FOODDATA_CENTRAL_API_KEY
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -43,6 +46,16 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        //val stepCounter = StepCounter(this)
+        //stepCounter.startRecording()
+
+        /*
+        val locFetcher = LocationFetcher(this)
+        locFetcher.getCurrentLocation { res, lat, long ->
+            println("lat, long = $lat, $long")
+        }
+         */
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

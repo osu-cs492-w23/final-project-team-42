@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
 import com.example.team42fitness.data.foodData.FoodItem
-import com.example.team42fitness.data.foodData.Nutrients
+import com.example.team42fitness.data.foodData.Nutrient
 
 class NutritionFragment: Fragment(R.layout.fragment_food_data) {
 
@@ -37,6 +37,7 @@ class NutritionFragment: Fragment(R.layout.fragment_food_data) {
         val directions = NutritionFragmentDirections.navigateToSearchFood()
         findNavController().navigate(directions)
     }
+
 
     val dummyResults = mutableListOf(
         FoodItem(1, "name 1","Pepsi co.",

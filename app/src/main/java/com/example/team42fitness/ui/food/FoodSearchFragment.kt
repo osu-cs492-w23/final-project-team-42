@@ -15,14 +15,18 @@ import com.example.team42fitness.R
 import com.example.team42fitness.api.FoodDataSearchService
 import com.example.team42fitness.data.foodData.FoodDataSearchRepository
 import com.example.team42fitness.data.foodData.FoodItem
+
 import com.example.team42fitness.data.foodData.LoadingStatus
 import com.example.team42fitness.data.foodData.Nutrients
 import com.google.android.material.progressindicator.CircularProgressIndicator
+
 
 class FoodSearchFragment: Fragment(R.layout.fragment_food_search) {
     private val foodDataSearchService = FoodDataSearchService.create()
     private val repository = FoodDataSearchRepository(FoodDataSearchService.create())
     private val viewModel: FoodSearchViewModel by viewModels()
+
+    private val repository = FoodDataSearchRepository(FoodDataSearchService.create())
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

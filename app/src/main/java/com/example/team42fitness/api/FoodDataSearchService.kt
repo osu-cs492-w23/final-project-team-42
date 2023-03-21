@@ -16,7 +16,7 @@ interface FoodDataSearchService {
     suspend fun loadFoodResults(
         @Query("query") query: String?,
         @Query("api_key") apiKey: String = "fzLMJqmkWeci3bkjhONuhFt4M9ZjGc6rwj1jCBfQ",
-        @Query("pageSize") size: Int = 1
+        @Query("pageSize") size: Int = 10
     ) : Response<FoodSearchResultsList>
 
     companion object {

@@ -35,7 +35,7 @@ class FoodSearchFragment: Fragment(R.layout.fragment_food_search) {
         val adapter = NutritionAdapter()
         foodDataListRV.adapter = adapter
 
-        viewModel.searchResults.observe(viewLifecycleOwner) {searchResults ->
+        viewModel.searchResults.observe(viewLifecycleOwner) { searchResults ->
             adapter.updateFoodItems(searchResults)
 
         }
@@ -43,15 +43,15 @@ class FoodSearchFragment: Fragment(R.layout.fragment_food_search) {
 
 
 
-        searchFoodBtn.setOnClickListener{
+        searchFoodBtn.setOnClickListener {
             val query = foodInput.text.toString()
-            if (!TextUtils.isEmpty(query)){
+            if (!TextUtils.isEmpty(query)) {
                 // perform search query
                 viewModel.loadSearchResults(query)
                 Log.d("FoodSearchFragment", "Perform search query for ${foodInput.text}")
                 Log.d("FoodSearchFragment", "viewModel ${viewModel.searchResults.value}")
 //                dummyResults.add(viewModel.searchResults.value)
-                adapter.updateFoodItems(dummyResults)
+                //adapter.updateFoodItems(dummyResults)
                 foodDataListRV.scrollToPosition(0)
             }
 
@@ -60,24 +60,4 @@ class FoodSearchFragment: Fragment(R.layout.fragment_food_search) {
 
 
     }
-
-//    private suspend fun doFoodSearch(q: String) {
-//        foodDataSearchService.loadFoodResults(q, "fzLMJqmkWeci3bkjhONuhFt4M9ZjGc6rwj1jCBfQ")
-//    }
-    val dummyResults = mutableListOf(
-    FoodItem(1, "desc 1", listOf(Nutrients("Calories", "KCAL", 200f), Nutrients("Protein", "G", 20f))),
-    FoodItem(2, "desc 2", listOf(Nutrients("Calories", "KCAL", 200f), Nutrients("Protein", "G", 20f))),
-    FoodItem(3, "desc 3", listOf(Nutrients("Calories", "KCAL", 200f), Nutrients("Protein", "G", 20f))),
-    FoodItem(4, "desc 4", listOf(Nutrients("Calories", "KCAL", 200f), Nutrients("Protein", "G", 20f))),
-    FoodItem(5, "desc 5", listOf(Nutrients("Calories", "KCAL", 200f), Nutrients("Protein", "G", 20f))),
-    FoodItem(6, "desc 6", listOf(Nutrients("Calories", "KCAL", 200f), Nutrients("Protein", "G", 20f))),
-    FoodItem(7, "desc 7", listOf(Nutrients("Calories", "KCAL", 200f), Nutrients("Protein", "G", 20f))),
-    FoodItem(8, "desc 8", listOf(Nutrients("Calories", "KCAL", 200f), Nutrients("Protein", "G", 20f))),
-    FoodItem(9, "desc 9",  listOf(Nutrients("Calories", "KCAL", 200f), Nutrients("Protein", "G", 20f))),
-    FoodItem(10, "desc 10", listOf(Nutrients("Calories", "KCAL", 200f), Nutrients("Protein", "G", 20f))),
-    FoodItem(12, "desc 11", listOf(Nutrients("Calories", "KCAL", 200f), Nutrients("Protein", "G", 20f))),
-    )
-
-
-
 }

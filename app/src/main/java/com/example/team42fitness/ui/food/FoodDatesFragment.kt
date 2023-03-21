@@ -1,10 +1,12 @@
 package com.example.team42fitness.ui.food
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
@@ -69,10 +71,20 @@ class FoodDatesFragment : Fragment(R.layout.fragment_food) {
         var date1: Date? = null
         var date2: Date? = null
 
+        val currentDate = dateFormat.format(Date())
+
+        val sharedPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        if (sharedPrefs.getString("Date", null) == null){
+            val editor = sharedPrefs.edit()
+            editor.putString("Date", currentDate)
+            editor.apply()
+        }
+
+
         try{
 
-            date1 = dateFormat.parse("03-17-2023")
-            date2 = dateFormat.parse("04-15-2023")
+            date1 = dateFormat.parse(currentDate)
+            date2 = dateFormat.parse("06-16-2023")
 
 
         }catch (e: ParseException){

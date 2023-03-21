@@ -47,6 +47,12 @@ class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
         private val foodDataTV = view.findViewById<TextView>(R.id.tv_data_text)
         private val addFoodBtn = view.findViewById<Button>(R.id.btn_add_food_data)
 
+        private val calories = view.findViewById<TextView>(R.id.tv_calories)
+        private val protein = view.findViewById<TextView>(R.id.tv_protein)
+        private val fat = view.findViewById<TextView>(R.id.tv_fat)
+        private val carb = view.findViewById<TextView>(R.id.tv_carb)
+        private val sugar = view.findViewById<TextView>(R.id.tv_sugar)
+
         private var currentFoodItem: FoodItem? = null
 
 //        init {
@@ -57,6 +63,35 @@ class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
         fun bind(foodItem: FoodItem){
             currentFoodItem = foodItem
             foodDataTV.text = foodItem.description
+            val nutrients: List<Nutrients> = foodItem.nutrients
+            for ((i, nutrient) in nutrients.withIndex()){
+                when (nutrient.name){
+                    "Energy" -> {
+                        val n = "Calories ${nutrient.amount} ${nutrient.unit}"
+                        calories.text = n
+                    }
+                    "Protein" -> {
+                        val n = "${nutrient.name} ${nutrient.amount} ${nutrient.unit}"
+                        protein.text = n
+                    }
+
+                    "Total lipid (fat)" -> {
+                        val n = "Fat ${nutrient.amount} ${nutrient.unit}"
+                        fat.text = n
+                    }
+
+                    "Carbohydrate, by difference" -> {
+                        val n = "Carbs ${nutrient.amount} ${nutrient.unit}"
+                        carb.text = n
+                    }
+
+                    "Sugars" -> {
+                        val n = "${nutrient.name} ${nutrient.amount} ${nutrient.unit}"
+                        sugar.text = n
+                    }
+                }
+            }
+
             addFoodBtn.setOnClickListener{
                 Log.d("FoodDataAdapter","add food to database: $currentFoodItem")
             }
@@ -99,12 +134,10 @@ class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>(){
         private val foodName = view.findViewById<TextView>(R.id.tv_food_name)
         private val foodImg = view.findViewById<ImageView>(R.id.iv_image)
         private val protein = view.findViewById<TextView>(R.id.tv_protein)
-
         private val fat = view.findViewById<TextView>(R.id.tv_fat)
-
         private val carb = view.findViewById<TextView>(R.id.tv_carb)
-
         private val sugar = view.findViewById<TextView>(R.id.tv_sugar)
+        private val calories = view.findViewById<TextView>(R.id.tv_calories)
 
 
 
@@ -123,6 +156,10 @@ class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>(){
             val nutrients: List<Nutrients> = foodItem.nutrients
             for ((i, nutrient) in nutrients.withIndex()){
                 when (nutrient.name){
+                    "Energy" -> {
+                        val n = "Calories ${nutrient.amount} ${nutrient.unit}"
+                        calories.text = n
+                    }
                     "Protein" -> {
                         val n = "${nutrient.name} ${nutrient.amount} ${nutrient.unit}"
                         protein.text = n

@@ -25,14 +25,26 @@ interface FoodDataSearchService {
      * @return Returns a Retrofit `Response<>` object that will contain a [FoodSearchResultsList]
      * object if the API call was successful.
      */
-    @GET("foods/search")
+
+    @GET("search")
     suspend fun searchForFood(
-        @Query("query") foodQuery: String? = "Cheese",
-        @Query("appid") apiKey: String
+        @Query("query") query: String?,
+        @Query("api_key") apiKey: String = "fzLMJqmkWeci3bkjhONuhFt4M9ZjGc6rwj1jCBfQ",
+        @Query("pageSize") size: Int = 10
     ) : Response<FoodSearchResultsList>
 
     companion object {
-        private const val BASE_URL = "https://api.nal.usda.gov/fdc/v1/"
+        private const val BASE_URL = "https://api.nal.usda.gov/fdc/v1/foods/"
+
+    //@GET("foods/search")
+    //suspend fun searchForFood(
+     //   @Query("query") foodQuery: String? = "Cheese",
+      //  @Query("appid") apiKey: String
+   // ) : Response<FoodSearchResultsList>
+
+   // companion object {
+    //    private const val BASE_URL = "https://api.nal.usda.gov/fdc/v1/"
+
 
         /**
          * This method can be cal led as `FoodDataSearchService.create()` to create an object

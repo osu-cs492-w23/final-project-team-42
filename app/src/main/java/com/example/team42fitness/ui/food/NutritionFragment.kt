@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
 import com.example.team42fitness.data.foodData.FoodItem
-import com.example.team42fitness.data.foodData.Nutrient
+import com.example.team42fitness.data.foodData.Nutrients
 
 class NutritionFragment: Fragment(R.layout.fragment_food_data) {
 

@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.team42fitness.FOODDATA_CENTRAL_APPID
 import com.example.team42fitness.R
 import com.example.team42fitness.api.FoodDataSearchService
 import com.example.team42fitness.data.foodData.FoodDataSearchRepository
@@ -24,9 +25,9 @@ import com.google.android.material.progressindicator.CircularProgressIndicator
 class FoodSearchFragment: Fragment(R.layout.fragment_food_search) {
     private val foodDataSearchService = FoodDataSearchService.create()
     private val repository = FoodDataSearchRepository(FoodDataSearchService.create())
-    private val viewModel: FoodSearchViewModel by viewModels()
 
-    private val repository = FoodDataSearchRepository(FoodDataSearchService.create())
+    private val viewModel: FoodSearchViewModel by viewModels()
+//    private val viewModel: FoodDataSearchViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

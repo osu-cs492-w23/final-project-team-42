@@ -13,6 +13,7 @@ import com.example.team42fitness.R
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.team42fitness.data.foodData.FoodItem
 import com.example.team42fitness.data.foodData.Nutrients
+import com.example.team42fitness.data.foodData.FoodSearchResultsList
 
 class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
     private var foodItem = listOf<FoodItem>()
@@ -91,28 +92,30 @@ class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
 }
 
 
-class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>(){
+class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>() {
     private var foodItem = listOf<FoodItem>()
 
-    fun updateFoodItems(newFoodItemList: List<FoodItem>?){
+    fun updateFoodItems(newFoodItemList: List<FoodItem>?) {
         foodItem = newFoodItemList ?: listOf()
         notifyDataSetChanged()
     }
 
     override fun getItemCount() = foodItem.size
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NutritionViewHolder2{
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.food_data,
-            parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NutritionViewHolder2 {
+        val view = LayoutInflater.from(parent.context).inflate(
+            R.layout.food_data,
+            parent, false
+        )
         return NutritionViewHolder2(view)
     }
 
-    override fun onBindViewHolder(holder: NutritionViewHolder2, position: Int){
+    override fun onBindViewHolder(holder: NutritionViewHolder2, position: Int) {
         holder.bind(foodItem[position])
 
     }
 
-    class NutritionViewHolder2(view: View): RecyclerView.ViewHolder(view){
+    class NutritionViewHolder2(view: View) : RecyclerView.ViewHolder(view) {
         private val foodName = view.findViewById<TextView>(R.id.tv_food_name)
         private val foodImg = view.findViewById<ImageView>(R.id.iv_image)
         private val protein = view.findViewById<TextView>(R.id.tv_protein)
@@ -124,18 +127,18 @@ class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>(){
         private var currentFoodItem: FoodItem? = null
 
         init {
-                foodImg.animate().apply {
-                    duration = 1000
-                    rotationXBy(360f)
-                }
+            foodImg.animate().apply {
+                duration = 1000
+                rotationXBy(360f)
+            }
         }
 
-        fun bind(foodItem: FoodItem){
+        fun bind(foodItem: FoodItem) {
             currentFoodItem = foodItem
             foodName.text = foodItem.description
             val nutrients: List<Nutrients> = foodItem.nutrients
-            for ((i, nutrient) in nutrients.withIndex()){
-                when (nutrient.name){
+            for ((i, nutrient) in nutrients.withIndex()) {
+                when (nutrient.name) {
                     "Energy" -> {
                         val n = "Calories ${nutrient.amount} ${nutrient.unit}"
                         calories.text = n
@@ -149,7 +152,6 @@ class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>(){
                         val n = "Fat ${nutrient.amount} ${nutrient.unit}"
                         fat.text = n
                     }
-
                     "Carbohydrate, by difference" -> {
                         val n = "Carbs ${nutrient.amount} ${nutrient.unit}"
                         carb.text = n

@@ -1,5 +1,8 @@
 package com.example.team42fitness.ui.fitness
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -14,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
 import com.example.team42fitness.data.fitnessData.LocationData
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -67,6 +71,7 @@ class ClickedDayFragment : Fragment(R.layout.fragment_clicked_day)
         /**
          * Wondering if I gotta read from database to populate adapter whenever a day is clicked to repopulate...
          * Since it looks like content is not displayed if I go back and then return to specific day...
+         * Am drawing blanks rn with all the files...
          */
 
 //        entriesFromSpecificDate?.let {
@@ -116,9 +121,27 @@ class ClickedDayFragment : Fragment(R.layout.fragment_clicked_day)
     }
 
 
+    // https://stackoverflow.com/questions/3574644/how-can-i-find-the-latitude-and-longitude-from-address
     private fun viewLocationEntryOnMap(locationData: LocationData)
     {
         Log.d(TAG, "ViewLocationEntryOnMap() called on ${args.locationDate.date} for the entry $locationData")
+
+        val uriBase = "geo:0,0?q="
+        val uri: String = uriBase + locationData.locationName
+
+        val geoUri = Uri.parse(uri)
+
+        val intent = Intent(Intent.ACTION_VIEW, geoUri)
+
+        try {
+            startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+            Snackbar.make(
+                requireActivity().findViewById(R.id.rv_clicked_day),
+                "An app wasn't found to be able to open and display the location for the entry you entered... :(",
+                Snackbar.LENGTH_LONG
+            ).show()
+        }
 
     }
 }

@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
+    android:gravity="center"
     >
 
     <TextView
@@ -13,6 +14,7 @@
         android:textSize="20sp"
         android:textAppearance="?attr/textAppearanceHeadlineMedium"
         android:textStyle="bold"
+        android:textColor="#adb5bd"
         android:text="@string/desc_clicked_day"
     />
 
@@ -20,8 +22,8 @@
         android:id="@+id/et_location_entry"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:hint="Enter locations you went to today."
+        android:textSize="20sp"
+        android:hint="Specific locations/addresses, cities, etc."
     />
 
     <Button

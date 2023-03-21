@@ -1,5 +1,6 @@
 package com.example.team42fitness.ui.fitness
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.TextureView
 import android.view.View
@@ -12,12 +13,13 @@ import com.example.team42fitness.data.fitnessData.LocationData
 /**
  * For use with ClickedDayViewModel...
  */
+
+
 class ClickedDayAdapter(private val onClick: (LocationData) -> Unit) : RecyclerView.Adapter<ClickedDayAdapter.ViewHolder>()
 {
+    private val TAG = "ClickedDayAdapter"
+
     private val locationEntries: MutableList<LocationData> = mutableListOf()
-
-
-
 
 
     override fun getItemCount() = this.locationEntries.size
@@ -50,6 +52,7 @@ class ClickedDayAdapter(private val onClick: (LocationData) -> Unit) : RecyclerV
         init
         {
             itemView.setOnClickListener { currLocationEntry.let(onClick) }
+            // Log.d(TAG, "ViewHolder() within ClickedDayAdapter called for $currLocationEntry")
         }
 
         fun bind(locationEntry: LocationData)

@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModel
 class LocationViewModel : ViewModel()
 {
     private val _text = MutableLiveData<String>().apply {
-        value = "This is Locations Fragment"
+        value = "This is Location Lookback Fragment"
     }
 
     val text: LiveData<String> = _text

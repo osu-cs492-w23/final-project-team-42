@@ -14,5 +14,5 @@
 
      <string name="label_clicked_day">Lookback</string>
 
-    <string name="desc_clicked_day">Looking back through your day, enter all the places you went to.</string>
+    <string name="desc_clicked_day">Looking back through your day, enter locations and places you went to.</string>
 </resources>

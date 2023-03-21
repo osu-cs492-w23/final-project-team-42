@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/coordinator_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:gravity="center" >
+    <!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+
+
+        <TextView
+            android:id="@+id/tv_feature_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textAppearance="?attr/textAppearanceHeadlineMedium"
+            android:textStyle="bold"
+            android:textColor="#adb5bd"
+            android:text="@string/desc_clicked_day"
+        />
+
+        <EditText
+            android:id="@+id/et_location_entry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:hint="Specific locations/addresses, cities, etc."
+        />
+
+        <Button
+            android:id="@+id/btn_add_entry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Location"
+        />
+
+<!--        <Button-->
+<!--            android:id="@+id/btn_toggle_map"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Toggle Map"-->
+<!--        />-->
+
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_clicked_day"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

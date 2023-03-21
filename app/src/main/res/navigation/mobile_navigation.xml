@@ -27,7 +27,7 @@
         android:id="@+id/nav_location"
         android:name="com.example.team42fitness.ui.locationLookback.LocationFragment"
         android:label="@string/menu_locations"
-        tools:layout="@layout/fragment_location" >
+        tools:layout="@layout/fragment_location">
 
         <action
             android:id="@+id/navigate_to_clicked_day"

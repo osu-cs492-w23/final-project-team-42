@@ -67,7 +67,7 @@ class ClickedDayFragment : Fragment(R.layout.fragment_clicked_day)
         var fullSupportActionBarTitle: String = args.locationDate.date + " " + "Lookback"
         (activity as AppCompatActivity).supportActionBar?.title = fullSupportActionBarTitle
 
-
+        setRetainInstance(true)
 
         /**
          * Wondering if I gotta read from database to populate adapter whenever a day is clicked to repopulate...
@@ -148,6 +148,12 @@ class ClickedDayFragment : Fragment(R.layout.fragment_clicked_day)
     {
         Log.d(TAG, "onResume() called!!")
         super.onResume()
+
+        var fullSupportActionBarTitle: String = args.locationDate.date + " " + "Lookback"
+        (activity as AppCompatActivity).supportActionBar?.title = fullSupportActionBarTitle
+
+        setRetainInstance(true)
+
 
         // add functionality that gets entries from database for specific day (based on which day was clicked) and puts that into recyclerview
         // unless, that has to be handled by ClickedDayViewModel

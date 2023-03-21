@@ -1,4 +1,4 @@
-package com.example.team42fitness.data
+package com.example.team42fitness.api
 
 import android.app.Activity
 import android.content.Context
@@ -12,8 +12,8 @@ import kotlin.math.sqrt
 class StepCounter (private val activity: Activity) : SensorEventListener {
     private val TAG = "StepCounter"
 
-    private var sensorManager: SensorManager
-    private var accSensor: Sensor? = null
+    private var sensorManager = activity.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+    private var accSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
 
     private var stepCount = 0
 
@@ -21,11 +21,6 @@ class StepCounter (private val activity: Activity) : SensorEventListener {
     private var accData = mutableListOf<Pair<Long, Float>>()
 
     private var lastSampleTime : Long? = null
-
-    init {
-        sensorManager = activity.getSystemService(Context.SENSOR_SERVICE) as SensorManager
-        accSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
-    }
 
     // Starts recording steps
     fun startRecording() {
@@ -74,7 +69,6 @@ class StepCounter (private val activity: Activity) : SensorEventListener {
 
                 calculateStep()
                 lastSampleTime = event.timestamp
-                println(stepCount)
             }
         }
     }
@@ -100,7 +94,7 @@ class StepCounter (private val activity: Activity) : SensorEventListener {
         }
 
         if (maxVal.second - minVal.second > 3f) {
-            if (maxVal.first + 0.1f > minVal.first) {
+            if (maxVal.first > minVal.first) {
                 stepCount++
                 accData.clear()
             }

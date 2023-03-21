@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.team42fitness.data.foodData.FoodItem
+import com.example.team42fitness.data.foodData.Nutrients
 
 class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
 
@@ -61,6 +62,8 @@ class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
             }
         }
     }
+
+
 }
 
 
@@ -95,12 +98,13 @@ class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>(){
     class NutritionViewHolder2(view: View): RecyclerView.ViewHolder(view){
         private val foodName = view.findViewById<TextView>(R.id.tv_food_name)
         private val foodImg = view.findViewById<ImageView>(R.id.iv_image)
-        private val nutrientName = view.findViewById<TextView>(R.id.tv_food_nutrient_name)
-        private val nutrientUnit = view.findViewById<TextView>(R.id.tv_food_nutrient_unit)
-        private val nutrientAmount = view.findViewById<TextView>(R.id.tv_food_nutrient_amount)
+        private val protein = view.findViewById<TextView>(R.id.tv_protein)
 
+        private val fat = view.findViewById<TextView>(R.id.tv_fat)
 
-        private val layout = view.findViewById<CoordinatorLayout>(R.id.coordinator_layout)
+        private val carb = view.findViewById<TextView>(R.id.tv_carb)
+
+        private val sugar = view.findViewById<TextView>(R.id.tv_sugar)
 
 
 
@@ -116,10 +120,30 @@ class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>(){
         fun bind(foodItem: FoodItem){
             currentFoodItem = foodItem
             foodName.text = foodItem.description
-            nutrientName.text = foodItem.nutrients?.name
-            nutrientUnit.text = foodItem.nutrients?.unit
-            nutrientAmount.text = foodItem.nutrients?.amount.toString()
+            val nutrients: List<Nutrients> = foodItem.nutrients
+            for ((i, nutrient) in nutrients.withIndex()){
+                when (nutrient.name){
+                    "Protein" -> {
+                        val n = "${nutrient.name} ${nutrient.amount} ${nutrient.unit}"
+                        protein.text = n
+                    }
 
+                    "Total lipid (fat)" -> {
+                        val n = "Fat ${nutrient.amount} ${nutrient.unit}"
+                        fat.text = n
+                    }
+
+                    "Carbohydrate, by difference" -> {
+                        val n = "Carbs ${nutrient.amount} ${nutrient.unit}"
+                        carb.text = n
+                    }
+
+                    "Sugars" -> {
+                        val n = "${nutrient.name} ${nutrient.amount} ${nutrient.unit}"
+                        sugar.text = n
+                    }
+                }
+            }
         }
     }
 }

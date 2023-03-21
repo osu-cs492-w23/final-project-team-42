@@ -17,7 +17,7 @@ data class FoodItem(
     val description: String,
 
     @Json(name="foodNutrients")
-    val nutrients: Nutrients?,
+    val nutrients: List<Nutrients>,
 
     ): java.io.Serializable
 
@@ -40,7 +40,7 @@ data class FoodDataPropertiesJson(
     val fdcId: Int, // Unique ID of the food
 
     val description: String, // The Description of the food
-    val nutrientName: Nutrients?
+    val foodNutrients: List<Nutrients>
 )
 
 class FoodListJsonAdapter {
@@ -48,7 +48,7 @@ class FoodListJsonAdapter {
     fun FoodListFromJson(list: FoodDataPropertiesJson) = FoodItem(
         fdcId = list.fdcId,
         description = list.description,
-        nutrients = list.nutrientName,
+        nutrients = list.foodNutrients,
     )
 
     @ToJson

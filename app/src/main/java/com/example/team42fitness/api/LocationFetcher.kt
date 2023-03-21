@@ -16,7 +16,7 @@ class LocationFetcher (private val activity: AppCompatActivity) {
     private val TAG = "LocationFetcher"
 
     private var fusedLocationClient: FusedLocationProviderClient? = LocationServices.getFusedLocationProviderClient(activity)
-    private var lastCallBackFunc: ((input: Boolean, Double, Double) -> Unit)? = null
+    private var lastCallBackFunc: ((Boolean, Double, Double) -> Unit)? = null
     private val requestPermissionLauncher = activity.registerForActivityResult(
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
@@ -30,7 +30,7 @@ class LocationFetcher (private val activity: AppCompatActivity) {
             }
         }
 
-    fun getCurrentLocation(callback: (input: Boolean, Double, Double) -> Unit) {
+    fun getCurrentLocation(callback: (Boolean, Double, Double) -> Unit) {
         if (fusedLocationClient == null) {
             Log.e(TAG, "FusedLocationProviderClient is null!")
             return

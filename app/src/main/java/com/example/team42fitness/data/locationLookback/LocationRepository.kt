@@ -1,6 +1,4 @@
-package com.example.team42fitness.data.fitnessData
-
-import android.location.Location
+package com.example.team42fitness.data.locationLookback
 
 class LocationRepository(private val dao: LocationDao)
 {

@@ -1,15 +1,12 @@
-package com.example.team42fitness.ui.fitness
+package com.example.team42fitness.ui.locationLookback
 
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
-import com.example.team42fitness.data.fitnessData.LocationData
+import com.example.team42fitness.data.locationLookback.LocationData
 
 /**
  * For use with ClickedDayViewModel...

@@ -1,4 +1,4 @@
-package com.example.team42fitness.ui.fitness
+package com.example.team42fitness.ui.locationLookback
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

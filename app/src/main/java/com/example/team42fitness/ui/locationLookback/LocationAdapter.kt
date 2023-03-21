@@ -1,4 +1,4 @@
-package com.example.team42fitness.ui.fitness
+package com.example.team42fitness.ui.locationLookback
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,9 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
-import com.example.team42fitness.data.fitnessData.LocationData
-import com.example.team42fitness.data.fitnessData.LocationDate
-import kotlin.reflect.KFunction2
+import com.example.team42fitness.data.locationLookback.LocationDate
 
 /**
  * For use with LocationViewModel, which is used in main screen for location entry feature

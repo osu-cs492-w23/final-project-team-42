@@ -1,4 +1,4 @@
-package com.example.team42fitness.ui.fitness
+package com.example.team42fitness.ui.locationLookback
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
@@ -17,9 +17,8 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
-import com.example.team42fitness.data.fitnessData.LocationData
+import com.example.team42fitness.data.locationLookback.LocationData
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.coroutines.flow.Flow
 
 /**
  * The ClickedDayFragment will be used to deal with when the user clicks on a specific day
@@ -143,6 +142,7 @@ class ClickedDayFragment : Fragment(R.layout.fragment_clicked_day)
 
     override fun onResume()
     {
+        Log.d(TAG, "onResume() called!!")
         super.onResume()
 
         // add functionality that gets entries from database for specific day (based on which day was clicked) and puts that into recyclerview
@@ -152,18 +152,29 @@ class ClickedDayFragment : Fragment(R.layout.fragment_clicked_day)
         roomViewModel.setDay(args.locationDate.date)
 //        val entriesFromSpecificDay = roomViewModel.locationEntriesFromSpecificDay
 
+        Log.d(TAG, "onResume(), passed roomViewModel.setDay()")
+
+
+        val testList = mutableListOf<String>()
+
         roomViewModel.locationEntriesFromSpecificDay.observe(this)
         {
-//            locationEntriesAdapter.addLocationEntry(LocationData(entry.index, entry.day, entry.locationName))
             for (entry in it)
             {
                 // locationEntriesAdapter.addLocationEntry(LocationData(entry.index, entry.day, entry.locationName))
                 Log.d(TAG, entry.toString())
+                testList.add(entry.locationName)
             }
         }
 
+        Log.d(TAG, "onResume(), passed for loop for entries from specific day (hopefully)")
 
 
+        Log.d(TAG, "after for loop. hopefully contents returned. Now printing contents of testList")
+        for (item in testList)
+        {
+            print(item)
+        }
 
     }
 

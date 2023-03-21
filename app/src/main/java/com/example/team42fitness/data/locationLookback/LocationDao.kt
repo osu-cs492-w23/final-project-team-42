@@ -1,4 +1,4 @@
-package com.example.team42fitness.data.fitnessData
+package com.example.team42fitness.data.locationLookback
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow

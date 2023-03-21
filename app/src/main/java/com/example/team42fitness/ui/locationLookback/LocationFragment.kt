@@ -1,4 +1,4 @@
-package com.example.team42fitness.ui.fitness
+package com.example.team42fitness.ui.locationLookback
 
 import android.os.Bundle
 import android.util.Log
@@ -9,8 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
-import com.example.team42fitness.data.fitnessData.LocationData
-import com.example.team42fitness.data.fitnessData.LocationDate
+import com.example.team42fitness.data.locationLookback.LocationDate
 import java.text.SimpleDateFormat
 import java.util.Calendar
 

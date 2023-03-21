@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/nav_location"
-        android:name="com.example.team42fitness.ui.fitness.LocationFragment"
+        android:name="com.example.team42fitness.ui.locationLookback.LocationFragment"
         android:label="@string/menu_locations"
         tools:layout="@layout/fragment_location" >
 
@@ -38,13 +38,13 @@
 
     <fragment
         android:id="@+id/clicked_day"
-        android:name="com.example.team42fitness.ui.fitness.ClickedDayFragment"
+        android:name="com.example.team42fitness.ui.locationLookback.ClickedDayFragment"
         android:label="@string/label_clicked_day"
         tools:layout="@layout/fragment_clicked_day"
     >
         <argument
             android:name="locationDate"
-            app:argType="com.example.team42fitness.data.fitnessData.LocationDate"
+            app:argType="com.example.team42fitness.data.locationLookback.LocationDate"
         />
 
     </fragment>

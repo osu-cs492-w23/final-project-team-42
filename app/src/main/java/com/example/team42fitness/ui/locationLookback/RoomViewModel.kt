@@ -1,15 +1,13 @@
-package com.example.team42fitness.ui.fitness
+package com.example.team42fitness.ui.locationLookback
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavArgs
 import com.example.team42fitness.data.AppDatabase
-import com.example.team42fitness.data.fitnessData.LocationData
-import com.example.team42fitness.data.fitnessData.LocationRepository
+import com.example.team42fitness.data.locationLookback.LocationData
+import com.example.team42fitness.data.locationLookback.LocationRepository
 import kotlinx.coroutines.launch
-import java.util.concurrent.Flow
 
 /**
  * AndroidViewModel to communicate with db when at screen for specific day

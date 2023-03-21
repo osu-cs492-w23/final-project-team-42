@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.team42fitness.data.fitnessData.LocationDao
-import com.example.team42fitness.data.fitnessData.LocationData
+import com.example.team42fitness.data.locationLookback.LocationDao
+import com.example.team42fitness.data.locationLookback.LocationData
 
 @Database(entities = [LocationData::class], version = 1)
 abstract class AppDatabase: RoomDatabase() {

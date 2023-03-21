@@ -16,4 +16,6 @@ class ClickedDayViewModel : ViewModel()
     val text: LiveData<String> = _text
 
 
+
+
 }

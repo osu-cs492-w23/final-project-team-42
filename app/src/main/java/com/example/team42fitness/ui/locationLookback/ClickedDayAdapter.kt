@@ -9,10 +9,8 @@ import com.example.team42fitness.R
 import com.example.team42fitness.data.locationLookback.LocationData
 
 /**
- * For use with ClickedDayViewModel...
+ * RecyclerView adapter for user location entries
  */
-
-
 class ClickedDayAdapter(private val onClick: (LocationData) -> Unit) : RecyclerView.Adapter<ClickedDayAdapter.ViewHolder>()
 {
     private val TAG = "ClickedDayAdapter"
@@ -49,15 +47,15 @@ class ClickedDayAdapter(private val onClick: (LocationData) -> Unit) : RecyclerV
 
 
 
-    class ViewHolder(itemView: View, val onClick: (LocationData) -> Unit) : RecyclerView.ViewHolder(itemView)
+    class ViewHolder(itemView: View, private val onClick: (LocationData) -> Unit) : RecyclerView.ViewHolder(itemView)
     {
         private val locationTV = itemView.findViewById<TextView>(R.id.tv_clicked_day_text)
 
         private lateinit var currLocationEntry: LocationData
         init
         {
-            itemView.setOnClickListener { currLocationEntry.let(onClick) }
             // Log.d(TAG, "ViewHolder() within ClickedDayAdapter called for $currLocationEntry")
+            itemView.setOnClickListener { currLocationEntry.let(onClick) }
         }
 
         fun bind(locationEntry: LocationData)

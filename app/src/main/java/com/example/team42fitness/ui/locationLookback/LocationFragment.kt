@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
+import com.example.team42fitness.data.locationLookback.LocationData
 import com.example.team42fitness.data.locationLookback.LocationDate
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -98,7 +99,7 @@ class LocationFragment : Fragment(R.layout.fragment_location)
 
 
 
-    private fun onLocationDateItemClick(locationDate: LocationDate) //, locationData: LocationData)
+    private fun onLocationDateItemClick(locationDate: LocationDate)
     {
         Log.d(TAG, "onLocationDateItemClick() called, locationDate: $locationDate")
 

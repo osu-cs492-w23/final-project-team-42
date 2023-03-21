@@ -32,7 +32,9 @@
         <action
             android:id="@+id/navigate_to_clicked_day"
             app:destination="@+id/clicked_day"
-        />
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+
     </fragment>
 
 
@@ -46,6 +48,10 @@
             android:name="locationDate"
             app:argType="com.example.team42fitness.data.locationLookback.LocationDate"
         />
+<!--        <argument-->
+<!--            android:name="locationData"-->
+<!--            app:argType="com.example.team42fitness.data.locationLookback.LocationData"-->
+<!--        />-->
 
     </fragment>
 

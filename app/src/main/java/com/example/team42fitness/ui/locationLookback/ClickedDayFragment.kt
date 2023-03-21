@@ -33,15 +33,13 @@ class ClickedDayFragment : Fragment(R.layout.fragment_clicked_day)
     private val TAG = "ClickedDayFragment.kt"
 
     /**
-     * I think i need to have this viewModel used... or actually, maybe gotta create a ViewModel class...
+     * Maybe utilizing this viewModel will help with the data persisting issue when going between screens...
      */
     private val viewModel: ClickedDayViewModel by viewModels()
     private val args: ClickedDayFragmentArgs by navArgs()
 
     private val roomViewModel: RoomViewModel by viewModels()
     private val locationEntriesAdapter = ClickedDayAdapter(::onLocationEntryClick)
-
-
 
     private lateinit var locationEntryRV: RecyclerView
 
@@ -91,7 +89,7 @@ class ClickedDayFragment : Fragment(R.layout.fragment_clicked_day)
         /**
          * OnClickListener for button to add a location entry when the user
          * has entered a location they went to that day. Also adds entry info
-         * into database, including index, day, and location entry
+         * into database, which includes index, day, and location entry
          */
         locationEntryBtn.setOnClickListener {
             var newLocationEntry = locationEntryET.text.toString()
@@ -101,7 +99,6 @@ class ClickedDayFragment : Fragment(R.layout.fragment_clicked_day)
                 roomViewModel.addLocationEntry(LocationData(insertCounter, args.locationDate.date, newLocationEntry))
 
                 locationEntryET.setText("")
-                // newLocationEntry = ""
 
                 insertCounter += 1
             }
@@ -111,7 +108,7 @@ class ClickedDayFragment : Fragment(R.layout.fragment_clicked_day)
         /**
          * Functionality to delete entry. Removes it from recyclerview but currently not set up to remove from db
          */
-        val itemTouchCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT)
+        val itemTouchCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT)
         {
             override fun onMove (
                 recyclerView: RecyclerView,
@@ -122,13 +119,20 @@ class ClickedDayFragment : Fragment(R.layout.fragment_clicked_day)
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int)
             {
                 /**
-                 * It looks like I have to change or add LocationData as an args so that I can easily access the data. However, it was messing things up so yeah...
+                 * See how to access this specific location entry...
+                 * Maybe I have to change or add LocationData as an
+                 * args so that I can easily access the data.
+                 * However, it was messing things up so yeah...
                  */
                 // val entry = roomViewModel.getSingleLocationEntry()
 
+                /**
+                 * 'position' would be an items place in terms of entry order for a specific day,
+                 * so wouldn't necessarily correspond to index in db... so there may be issues there...
+                 */
                 val position = viewHolder.absoluteAdapterPosition
                 locationEntriesAdapter.deleteLocationEntry(position)
-                // roomViewModel.deleteLocationEntry(LocationData(args.locationData.index, , args.locationData.locationName))
+                // roomViewModel.deleteLocationEntry(LocationData(, , ))
             }
 
 
@@ -179,13 +183,18 @@ class ClickedDayFragment : Fragment(R.layout.fragment_clicked_day)
     }
 
 
-    /* launch intent to google maps for the location entry clicked */
+    /**
+     *  call to viewLocationEntryOnMap to handle intents to view location entry on map
+     */
     private fun onLocationEntryClick(locationData: LocationData)
     {
         viewLocationEntryOnMap(locationData)
     }
 
 
+    /**
+     * Haunch intent to google maps for the location entry clicked
+     */
     // https://developer.android.com/guide/components/intents-common
     // https://stackoverflow.com/questions/3574644/how-can-i-find-the-latitude-and-longitude-from-address
     private fun viewLocationEntryOnMap(locationData: LocationData)

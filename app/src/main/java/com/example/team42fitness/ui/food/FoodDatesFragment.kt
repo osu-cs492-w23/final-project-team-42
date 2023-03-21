@@ -25,14 +25,11 @@ this will be the main page of the list of food. it will display a list (using re
 class FoodDatesFragment : Fragment(R.layout.fragment_food) {
     private val viewModel: FoodViewModel by viewModels()
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         createDatesList()
-
+        val dates: List<Date> = createDatesList()
 
         val foodDateListRV: RecyclerView = view.findViewById(R.id.rv_food_list)
         foodDateListRV.layoutManager = LinearLayoutManager(requireContext())
@@ -41,27 +38,17 @@ class FoodDatesFragment : Fragment(R.layout.fragment_food) {
         val adapter = FoodAdapter(::onFoodDateItemClick)
         foodDateListRV.adapter = adapter
 
-
-        val dates: List<Date> = createDatesList()
-
-
-
         for (date in dates) {
             adapter.addFoodDate(FoodDate(date.toLocaleString().toString().slice(0..11)))
         }
-
     }
 
     private fun onFoodDateItemClick(){
         val directions = FoodDatesFragmentDirections.navigateToFoodData()
-
         findNavController().navigate(directions)
     }
 
-
     private fun createDatesList(): MutableList<Date>{
-
-
         val calender = Calendar.getInstance()
         val calender2 = Calendar.getInstance()
 
@@ -80,13 +67,9 @@ class FoodDatesFragment : Fragment(R.layout.fragment_food) {
             editor.apply()
         }
 
-
         try{
-
             date1 = dateFormat.parse(currentDate)
             date2 = dateFormat.parse("06-16-2023")
-
-
         }catch (e: ParseException){
             e.printStackTrace()
         }
@@ -94,20 +77,10 @@ class FoodDatesFragment : Fragment(R.layout.fragment_food) {
         calender.time = date1
         calender2.time = date2
 
-
-
         while(!calender.after(calender2)){
             datesList.add(calender.time)
             calender.add(Calendar.DATE, 1)
         }
-
         return datesList
     }
-
-
-
-
 }
-
-
-

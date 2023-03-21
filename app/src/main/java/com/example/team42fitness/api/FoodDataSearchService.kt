@@ -10,10 +10,23 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 
+/**
+ * This is a Retrofit service interface encapsulating communication with the FoodDataCentral API.
+ */
 interface FoodDataSearchService {
-
+    /**
+     * This method is used to query the USDA FoodDataCentral API's food search method:
+     * https://api.nal.usda.gov/fdc/v1/foods/search.  This is a suspending function, so it must be
+     * called in a coroutine or within another suspending function.
+     *
+     * @param foodQuery Specifies the food to be looked up.
+     * @param apiKey Should be a valid USDA FoodData Central API key.
+     *
+     * @return Returns a Retrofit `Response<>` object that will contain a [FoodSearchResultsList]
+     * object if the API call was successful.
+     */
     @GET("search")
-    suspend fun loadFoodResults(
+    suspend fun searchForFood(
         @Query("query") query: String?,
         @Query("api_key") apiKey: String = "fzLMJqmkWeci3bkjhONuhFt4M9ZjGc6rwj1jCBfQ",
         @Query("pageSize") size: Int = 10
@@ -22,7 +35,11 @@ interface FoodDataSearchService {
     companion object {
         private const val BASE_URL = "https://api.nal.usda.gov/fdc/v1/foods/"
 
-
+        /**
+         * This method can be cal led as `FoodDataSearchService.create()` to create an object
+         * implementing the FoodData central interface and which can be used to make calls to
+         * the FoodData Central API.
+         */
         fun create() : FoodDataSearchService {
             val moshi = Moshi.Builder()
                 .add(FoodListJsonAdapter())

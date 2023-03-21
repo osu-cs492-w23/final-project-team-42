@@ -15,9 +15,7 @@ import com.example.team42fitness.data.foodData.FoodItem
 import com.example.team42fitness.data.foodData.Nutrients
 
 class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
-
     private var foodItem = listOf<FoodItem>()
-
 
     fun updateFoodItems(newFoodItemList: List<FoodItem>?){
         foodItem = newFoodItemList ?: listOf()
@@ -38,15 +36,10 @@ class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
 
     }
 
-//    fun addFood(food: FoodData){
-//        foodData.add(0, food)
-//        notifyItemInserted(0)
-//    }
-
     class FoodDataViewHolder(view: View): RecyclerView.ViewHolder(view){
         private val foodDataTV = view.findViewById<TextView>(R.id.tv_data_text)
         private val addFoodBtn = view.findViewById<Button>(R.id.btn_add_food_data)
-
+        private val brand = view.findViewById<TextView>(R.id.tv_brand)
         private val calories = view.findViewById<TextView>(R.id.tv_calories)
         private val protein = view.findViewById<TextView>(R.id.tv_protein)
         private val fat = view.findViewById<TextView>(R.id.tv_fat)
@@ -55,14 +48,10 @@ class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
 
         private var currentFoodItem: FoodItem? = null
 
-//        init {
-//            addFoodBtn.setOnClickListener{
-//            }
-//        }
-
         fun bind(foodItem: FoodItem){
             currentFoodItem = foodItem
             foodDataTV.text = foodItem.description
+            brand.text = foodItem.brandName
             val nutrients: List<Nutrients> = foodItem.nutrients
             for ((i, nutrient) in nutrients.withIndex()){
                 when (nutrient.name){
@@ -103,9 +92,7 @@ class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
 
 
 class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>(){
-
     private var foodItem = listOf<FoodItem>()
-
 
     fun updateFoodItems(newFoodItemList: List<FoodItem>?){
         foodItem = newFoodItemList ?: listOf()
@@ -125,11 +112,6 @@ class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>(){
 
     }
 
-//    fun addFood(food: FoodData){
-//        foodData.add(0, food)
-//        notifyItemInserted(0)
-//    }
-
     class NutritionViewHolder2(view: View): RecyclerView.ViewHolder(view){
         private val foodName = view.findViewById<TextView>(R.id.tv_food_name)
         private val foodImg = view.findViewById<ImageView>(R.id.iv_image)
@@ -138,8 +120,6 @@ class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>(){
         private val carb = view.findViewById<TextView>(R.id.tv_carb)
         private val sugar = view.findViewById<TextView>(R.id.tv_sugar)
         private val calories = view.findViewById<TextView>(R.id.tv_calories)
-
-
 
         private var currentFoodItem: FoodItem? = null
 

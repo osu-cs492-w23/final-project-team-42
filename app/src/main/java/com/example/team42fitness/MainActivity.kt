@@ -11,8 +11,11 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import com.example.team42fitness.api.LocationFetcher
+import com.example.team42fitness.api.StepCounter
 import com.example.team42fitness.databinding.ActivityMainBinding
 
+const val FOODDATA_CENTRAL_APPID = BuildConfig.FOODDATA_CENTRAL_API_KEY
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -20,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -37,11 +41,23 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_location
+
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_location, R.id.nav_food
+
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        //val stepCounter = StepCounter(this)
+        //stepCounter.startRecording()
+
+        /*
+        val locFetcher = LocationFetcher(this)
+        locFetcher.getCurrentLocation { res, lat, long ->
+            println("lat, long = $lat, $long")
+        }
+         */
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -53,6 +53,40 @@
 <!--            app:argType="com.example.team42fitness.data.locationLookback.LocationData"-->
 <!--        />-->
 
+    <fragment
+        android:id="@+id/nav_food"
+        android:name="com.example.team42fitness.ui.food.FoodDatesFragment"
+        android:label="@string/menu_food"
+        tools:layout="@layout/fragment_food">
+
+        <action
+            android:id="@+id/navigate_to_food_data"
+            app:destination="@+id/food_data"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/food_data"
+        android:name="com.example.team42fitness.ui.food.NutritionFragment"
+        android:label="Food Data">
+        <action
+            android:id="@+id/navigate_to_search_food"
+            app:destination="@+id/food_search"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/food_search"
+        android:name="com.example.team42fitness.ui.food.FoodSearchFragment"
+        android:label="Search For Food to Add"
+        >
+
     </fragment>
 
 </navigation>

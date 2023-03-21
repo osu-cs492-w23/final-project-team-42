@@ -10,9 +10,17 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+
     <string name="menu_locations">Location Lookback</string>
 
      <string name="label_clicked_day">Lookback</string>
 
     <string name="desc_clicked_day">Looking back through your day, enter locations and places you went to.</string>
+
+    <string name="menu_food">Food</string>
+    <string name="title_activity_food_data">FoodDataActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
 </resources>

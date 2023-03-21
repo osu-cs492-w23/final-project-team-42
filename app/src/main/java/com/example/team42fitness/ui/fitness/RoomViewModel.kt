@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavArgs
 import com.example.team42fitness.data.AppDatabase
 import com.example.team42fitness.data.fitnessData.LocationData
 import com.example.team42fitness.data.fitnessData.LocationRepository
@@ -15,6 +16,13 @@ import java.util.concurrent.Flow
  */
 class RoomViewModel(application: Application): AndroidViewModel(application)
 {
+    private var day: String = ""
+
+    fun setDay(dayPassed: String)
+    {
+        day = dayPassed
+    }
+
     private val repository = LocationRepository(AppDatabase.getInstance(application).locationDao() )
 
     /**
@@ -29,10 +37,23 @@ class RoomViewModel(application: Application): AndroidViewModel(application)
         }
     }
 
-    fun getLocationEntriesFromSpecificDay(day: String)
+    fun deleteLocationEntry(location: LocationData)
     {
-        viewModelScope.launch{
-            repository.getLocationEntriesFromSpecificDay(day)
+        viewModelScope.launch {
+            repository.deleteLocationEntry(location)
         }
     }
+
+
+    val locationEntriesFromSpecificDay = repository.getLocationEntriesFromSpecificDay(day).asLiveData()
+
+//    fun getLocationEntriesFromSpecificDay(day: String)
+//    {
+//        viewModelScope.launch{
+//            repository.getLocationEntriesFromSpecificDay(day)
+//        }
+//    }
+
+
+    // fun getSingleLocationEntry(index: Int) = repository.getSingleLocationEntry(index).asLiveData()
 }

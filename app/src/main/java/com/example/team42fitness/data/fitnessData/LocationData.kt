@@ -12,4 +12,4 @@ data class LocationData
     @PrimaryKey val index: Int,
     val day: String,
     val locationName: String
-)
+) : java.io.Serializable

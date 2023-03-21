@@ -6,6 +6,7 @@ import android.view.TextureView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
 import com.example.team42fitness.data.fitnessData.LocationData
@@ -40,8 +41,15 @@ class ClickedDayAdapter(private val onClick: (LocationData) -> Unit) : RecyclerV
     {
         locationEntries.add(locationEntry)
         notifyDataSetChanged()
-        // notifyItemInserted()
+        //notifyItemInserted(0)
     }
+
+    fun deleteLocationEntry(entryPosition: Int)
+    {
+        locationEntries.removeAt(entryPosition)
+        notifyItemRemoved(entryPosition)
+    }
+
 
 
     class ViewHolder(itemView: View, val onClick: (LocationData) -> Unit) : RecyclerView.ViewHolder(itemView)

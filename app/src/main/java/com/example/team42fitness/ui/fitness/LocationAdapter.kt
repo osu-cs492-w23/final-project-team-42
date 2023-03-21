@@ -3,12 +3,12 @@ package com.example.team42fitness.ui.fitness
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView.ItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
+import com.example.team42fitness.data.fitnessData.LocationData
 import com.example.team42fitness.data.fitnessData.LocationDate
+import kotlin.reflect.KFunction2
 
 /**
  * For use with LocationViewModel, which is used in main screen for location entry feature

@@ -1,9 +1,6 @@
 package com.example.team42fitness.data.fitnessData
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -16,9 +13,12 @@ interface LocationDao
     suspend fun insertLocationEntry(location: LocationData)
 
 
-    // 🌳🌳🌳🌳🌳🦒❗🌳🌳🌳🌳🌳🦒❗🌳🌳🌳🌳🌳🦒❗
-    // (1) have method to delete entry
-    // (2) and later to get a specific entry (probably for intent for clicked entry, unless it can be handled elsewhere)
+    /**
+     * Delete a single location entry from database
+     */
+    @Delete
+    suspend fun deleteLocationEntry(location: LocationData)
+
 
     /**
      * Grab all the location entries entered by user from database
@@ -26,6 +26,17 @@ interface LocationDao
     @Query("SELECT * FROM LocationData")
     fun getAllLocationEntries(): Flow<List<LocationData>>
 
-    @Query("SELECT * FROM LocationData WHERE day == :date")
+
+    /**
+     * Hopefully the right syntax, but get all the location entries for a specified date passed by variable 'date'
+     */
+    @Query("SELECT * FROM LocationData WHERE day = :date")
     fun getLocationEntriesFromSpecificDay(date: String): Flow<List<LocationData>>
+
+
+    /**
+     * Grab a single location entry based on index
+     */
+    // @Query("SELECT * FROM LocationData WHERE index = :chosenIndex")
+    // fun getSingleLocationEntry(chosenIndex: Int): Flow<LocationData>
 }

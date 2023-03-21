@@ -1,31 +1,18 @@
 package com.example.team42fitness.ui.fitness
 
-import android.content.ContentValues.TAG
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
 import com.example.team42fitness.data.fitnessData.LocationData
 import com.example.team42fitness.data.fitnessData.LocationDate
-import com.example.team42fitness.databinding.FragmentGalleryBinding
-import com.example.team42fitness.ui.gallery.GalleryViewModel
-import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 import java.util.Calendar
-import java.util.Date
 
 /**
  * The LocationFragment class will be used to display a list of items to represent each day
@@ -112,7 +99,7 @@ class LocationFragment : Fragment(R.layout.fragment_location)
 
 
 
-    private fun onLocationDateItemClick(locationDate: LocationDate)
+    private fun onLocationDateItemClick(locationDate: LocationDate) //, locationData: LocationData)
     {
         Log.d(TAG, "onLocationDateItemClick() called, locationDate: $locationDate")
 

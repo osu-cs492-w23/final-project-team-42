@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
@@ -45,6 +46,9 @@ class ClickedDayFragment : Fragment(R.layout.fragment_clicked_day)
 
     private lateinit var locationEntryRV: RecyclerView
 
+    /**
+     * To keep track of entries added and to act as primary key since it can't be replaced by an entry.
+     */
     private var insertCounter = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
@@ -91,26 +95,76 @@ class ClickedDayFragment : Fragment(R.layout.fragment_clicked_day)
          * into database, including index, day, and location entry
          */
         locationEntryBtn.setOnClickListener {
-            val newLocationEntry = locationEntryET.text.toString()
+            var newLocationEntry = locationEntryET.text.toString()
             if (!TextUtils.isEmpty(newLocationEntry))
             {
                 locationEntriesAdapter.addLocationEntry(LocationData(insertCounter, args.locationDate.date, newLocationEntry))
-                locationEntryET.setText("")
                 roomViewModel.addLocationEntry(LocationData(insertCounter, args.locationDate.date, newLocationEntry))
+
+                locationEntryET.setText("")
+                // newLocationEntry = ""
 
                 insertCounter += 1
             }
         }
+
+
+        /**
+         * Functionality to delete entry. Removes it from recyclerview but currently not set up to remove from db
+         */
+        val itemTouchCallback = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT)
+        {
+            override fun onMove (
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder)
+                    : Boolean { return false }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int)
+            {
+                /**
+                 * It looks like I have to change or add LocationData as an args so that I can easily access the data. However, it was messing things up so yeah...
+                 */
+                // val entry = roomViewModel.getSingleLocationEntry()
+
+                val position = viewHolder.absoluteAdapterPosition
+                locationEntriesAdapter.deleteLocationEntry(position)
+                // roomViewModel.deleteLocationEntry(LocationData(args.locationData.index, , args.locationData.locationName))
+            }
+
+
+        }
+
+        ItemTouchHelper(itemTouchCallback).attachToRecyclerView(locationEntryRV)
+
     }
+
 
 
     override fun onResume()
     {
         super.onResume()
 
-
         // add functionality that gets entries from database for specific day (based on which day was clicked) and puts that into recyclerview
         // unless, that has to be handled by ClickedDayViewModel
+
+
+        roomViewModel.setDay(args.locationDate.date)
+//        val entriesFromSpecificDay = roomViewModel.locationEntriesFromSpecificDay
+
+        roomViewModel.locationEntriesFromSpecificDay.observe(this)
+        {
+//            locationEntriesAdapter.addLocationEntry(LocationData(entry.index, entry.day, entry.locationName))
+            for (entry in it)
+            {
+                // locationEntriesAdapter.addLocationEntry(LocationData(entry.index, entry.day, entry.locationName))
+                Log.d(TAG, entry.toString())
+            }
+        }
+
+
+
+
     }
 
 
@@ -121,6 +175,7 @@ class ClickedDayFragment : Fragment(R.layout.fragment_clicked_day)
     }
 
 
+    // https://developer.android.com/guide/components/intents-common
     // https://stackoverflow.com/questions/3574644/how-can-i-find-the-latitude-and-longitude-from-address
     private fun viewLocationEntryOnMap(locationData: LocationData)
     {
@@ -137,7 +192,7 @@ class ClickedDayFragment : Fragment(R.layout.fragment_clicked_day)
             startActivity(intent)
         } catch (e: ActivityNotFoundException) {
             Snackbar.make(
-                requireActivity().findViewById(R.id.rv_clicked_day),
+                requireActivity().findViewById(R.id.coordinator_layout),
                 "An app wasn't found to be able to open and display the location for the entry you entered... :(",
                 Snackbar.LENGTH_LONG
             ).show()

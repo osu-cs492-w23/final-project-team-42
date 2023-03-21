@@ -27,9 +27,7 @@ class FoodSearchFragment: Fragment(R.layout.fragment_food_search) {
     private val repository = FoodDataSearchRepository(FoodDataSearchService.create())
 
     private val viewModel: FoodSearchViewModel by viewModels()
-    private val viewModel: FoodDataSearchViewModel by viewModels()
-
-    private val repository = FoodDataSearchRepository(FoodDataSearchService.create())
+//    private val viewModel: FoodDataSearchViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

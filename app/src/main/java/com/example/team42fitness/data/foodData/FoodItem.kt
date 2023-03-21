@@ -84,7 +84,7 @@ data class FoodItem(
  * This class represents an item in the `list` field of the JSON response from the FoodData Central API.
  */
 @JsonClass(generateAdapter = true)
-data class Nutrient (
+data class Nutrients (
     @Json(name="nutrientName")
     val name: String,
 

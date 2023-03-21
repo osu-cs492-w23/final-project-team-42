@@ -17,14 +17,6 @@ abstract class AppDatabase: RoomDatabase() {
 
     // singleton instantiation
     companion object {
-        @Volatile
-        private var instance: AppDatabase? = null
-
-    // Daos
-    abstract fun fitnessActivityDao(): FitnessActivityDao
-
-    // singleton instantiation
-    companion object {
         @Volatile private var instance: AppDatabase? = null
 
 

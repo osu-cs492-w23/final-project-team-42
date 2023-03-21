@@ -152,7 +152,15 @@ class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>() {
                         val n = "Fat ${nutrient.amount} ${nutrient.unit}"
                         fat.text = n
                     }
+                    "Carbohydrate, by difference" -> {
+                        val n = "Carbs ${nutrient.amount} ${nutrient.unit}"
+                        carb.text = n
+                    }
 
+                    "Sugars" -> {
+                        val n = "${nutrient.name} ${nutrient.amount} ${nutrient.unit}"
+                        sugar.text = n
+                    }
                 }
             }
         }

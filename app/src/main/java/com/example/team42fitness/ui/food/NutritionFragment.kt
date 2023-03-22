@@ -8,8 +8,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
-import com.example.team42fitness.data.foodData.FoodItem
-import com.example.team42fitness.data.foodData.Nutrients
+import com.example.team42fitness.api.food.FoodItem
+import com.example.team42fitness.api.food.Nutrients
 
 class NutritionFragment: Fragment(R.layout.fragment_food_data) {
 
@@ -44,56 +44,67 @@ class NutritionFragment: Fragment(R.layout.fragment_food_data) {
                             listOf(
                                 Nutrients("Carbohydrate, by difference", "G", 200f),
                                 Nutrients("Protein", "G", 20f),
-                                Nutrients("Energy", "KCAL", 200f))),
+                                Nutrients("Energy", "KCAL", 200f)
+                            )),
         FoodItem(2, "name 2","Pepsi co.",
                             listOf(
                                 Nutrients("Carbohydrate, by difference", "G", 200f),
                                 Nutrients("Protein", "G", 20f),
-                                Nutrients("Energy", "KCAL", 200f))),
+                                Nutrients("Energy", "KCAL", 200f)
+                            )),
         FoodItem(3, "name 3", "Pepsi co.",
                             listOf(
                                 Nutrients("Carbohydrate, by difference", "G", 200f),
                                 Nutrients("Protein", "G", 20f),
-                                Nutrients("Energy", "KCAL", 200f))),
+                                Nutrients("Energy", "KCAL", 200f)
+                            )),
         FoodItem(4, "name 4", "Pepsi co.",
                             listOf(
                                 Nutrients("Carbohydrate, by difference", "G", 200f),
                                 Nutrients("Protein", "G", 20f),
-                                Nutrients("Energy", "KCAL", 200f))),
+                                Nutrients("Energy", "KCAL", 200f)
+                            )),
         FoodItem(5, "name 5", "Pepsi co.",
                             listOf(
                                 Nutrients("Carbohydrate, by difference", "G", 200f),
                                 Nutrients("Protein", "G", 20f),
-                                Nutrients("Energy", "KCAL", 200f))),
+                                Nutrients("Energy", "KCAL", 200f)
+                            )),
         FoodItem(6, "name 6", "Pepsi co.",
                             listOf(
                                 Nutrients("Carbohydrate, by difference", "G", 200f),
                                 Nutrients("Protein", "G", 20f),
-                                Nutrients("Energy", "KCAL", 200f))),
+                                Nutrients("Energy", "KCAL", 200f)
+                            )),
         FoodItem(7, "name 7", "Pepsi co.",
                             listOf(
                                 Nutrients("Carbohydrate, by difference", "G", 200f),
                                 Nutrients("Protein", "G", 20f),
-                                Nutrients("Energy", "KCAL", 200f))),
+                                Nutrients("Energy", "KCAL", 200f)
+                            )),
         FoodItem(8, "name 8", "Pepsi co.",
                             listOf(
                                 Nutrients("Carbohydrate, by difference", "G", 200f),
                                 Nutrients("Protein", "G", 20f),
-                                Nutrients("Energy", "KCAL", 200f))),
+                                Nutrients("Energy", "KCAL", 200f)
+                            )),
         FoodItem(9, "name 9", "Pepsi co.",
                             listOf(
                                 Nutrients("Carbohydrate, by difference", "G", 200f),
                                 Nutrients("Protein", "G", 20f),
-                                Nutrients("Energy", "KCAL", 200f))),
+                                Nutrients("Energy", "KCAL", 200f)
+                            )),
         FoodItem(10, "name 10", "Pepsi co.",
                             listOf(
                                 Nutrients("Carbohydrate, by difference", "G", 200f),
                                 Nutrients("Protein", "G", 20f),
-                                Nutrients("Energy", "KCAL", 200f))),
+                                Nutrients("Energy", "KCAL", 200f)
+                            )),
         FoodItem(12, "name 11", "Pepsi co.",
                             listOf(
                                 Nutrients("Carbohydrate, by difference", "G", 200f),
                                 Nutrients("Protein", "G", 20f),
-                                Nutrients("Energy", "KCAL", 200f))),
+                                Nutrients("Energy", "KCAL", 200f)
+                            )),
     )
 }

@@ -1,7 +1,7 @@
 package com.example.team42fitness.api
 
-import com.example.team42fitness.data.foodData.FoodListJsonAdapter
-import com.example.team42fitness.data.foodData.FoodSearchResultsList
+import com.example.team42fitness.api.food.FoodListJsonAdapter
+import com.example.team42fitness.api.food.FoodSearchResultsList
 import com.squareup.moshi.Moshi
 import retrofit2.Response
 import retrofit2.Retrofit

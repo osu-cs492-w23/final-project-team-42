@@ -7,13 +7,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
 import androidx.recyclerview.widget.RecyclerView.Adapter
-import com.example.team42fitness.data.foodData.FoodItem
-import com.example.team42fitness.data.foodData.Nutrients
-import com.example.team42fitness.data.foodData.FoodSearchResultsList
+import com.example.team42fitness.api.food.FoodItem
+import com.example.team42fitness.api.food.Nutrients
 
 class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
     private var foodItem = listOf<FoodItem>()

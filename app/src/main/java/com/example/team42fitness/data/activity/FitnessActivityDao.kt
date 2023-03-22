@@ -1,4 +1,4 @@
-package com.example.team42fitness.data
+package com.example.team42fitness.data.activity
 
 import androidx.room.Dao
 import androidx.room.Delete
@@ -18,7 +18,7 @@ interface FitnessActivityDao {
     fun getAllActivities(): Flow<List<FitnessActivity>>
 
     @Query("SELECT" +
-           "    SUM(caloriesBurned) /" +
+           "    SUM(steps) /" +
            "        CASE " +
            "            WHEN :weekOffset > 0 THEN 7 " +
            "            ELSE 1 + cast(strftime('%w', date) as int) " +
@@ -27,7 +27,7 @@ interface FitnessActivityDao {
            "GROUP BY strftime('%W', date) " +
            "HAVING cast(strftime('%W', date) as int) + :weekOffset = " +
            "    cast(strftime('%W', DATE('now')) as int)")
-    fun getAverageDailyCaloriesByWeek(weekOffset: Int): Flow<Int>
+    fun getAverageDailyStepsByWeek(weekOffset: Int): Flow<Int>
 
     @Query("SELECT COUNT(id) " +
             "FROM FitnessActivity " +

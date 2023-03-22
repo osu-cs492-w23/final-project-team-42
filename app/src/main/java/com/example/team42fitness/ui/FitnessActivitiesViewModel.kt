@@ -5,8 +5,8 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.team42fitness.data.AppDatabase
-import com.example.team42fitness.data.FitnessActivitiesRepository
-import com.example.team42fitness.data.FitnessActivity
+import com.example.team42fitness.data.activity.FitnessActivitiesRepository
+import com.example.team42fitness.data.activity.FitnessActivity
 import kotlinx.coroutines.launch
 
 class FitnessActivitiesViewModel(application: Application): AndroidViewModel(application) {
@@ -29,7 +29,7 @@ class FitnessActivitiesViewModel(application: Application): AndroidViewModel(app
     }
 
     fun getAverageDailyCaloriesByWeek(weekOffset: Int) =
-        repository.getAverageDailyCaloriesByWeek(weekOffset).asLiveData()
+        repository.getAverageDailyStepsByWeek(weekOffset).asLiveData()
 
     fun getActivityCountByWeek(weekOffset: Int) =
         repository.getActivityCountByWeek(weekOffset).asLiveData()

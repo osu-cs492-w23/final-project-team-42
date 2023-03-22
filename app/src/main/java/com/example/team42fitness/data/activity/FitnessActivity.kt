@@ -1,4 +1,4 @@
-package com.example.team42fitness.data
+package com.example.team42fitness.data.activity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -9,6 +9,6 @@ class FitnessActivity(
     val id: Int,
     val name: String,
     val duration: Int,
-    val caloriesBurned: Int,
+    val steps: Int,
     val date: String
     ) : java.io.Serializable

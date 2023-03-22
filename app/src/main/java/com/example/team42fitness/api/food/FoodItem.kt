@@ -1,4 +1,4 @@
-package com.example.team42fitness.data.foodData
+package com.example.team42fitness.api.food
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

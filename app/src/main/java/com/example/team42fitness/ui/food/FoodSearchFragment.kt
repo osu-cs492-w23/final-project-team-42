@@ -6,20 +6,13 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.team42fitness.FOODDATA_CENTRAL_APPID
 import com.example.team42fitness.R
 import com.example.team42fitness.api.FoodDataSearchService
-import com.example.team42fitness.data.foodData.FoodDataSearchRepository
-import com.example.team42fitness.data.foodData.FoodItem
-
-import com.example.team42fitness.data.foodData.LoadingStatus
-import com.example.team42fitness.data.foodData.Nutrients
-import com.google.android.material.progressindicator.CircularProgressIndicator
+import com.example.team42fitness.api.food.FoodDataSearchRepository
 
 
 class FoodSearchFragment: Fragment(R.layout.fragment_food_search) {

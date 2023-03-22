@@ -5,6 +5,6 @@ class FitnessActivitiesRepository(private val dao: FitnessActivityDao) {
     suspend fun deleteFitnessActivity(activity: FitnessActivity) = dao.delete(activity)
 
     fun getAllActivities() = dao.getAllActivities()
-    fun getAverageDailyCaloriesByWeek(weekOffset: Int) = dao.getAverageDailyCaloriesByWeek(weekOffset)
+    fun getAverageDailyStepsByWeek(weekOffset: Int) = dao.getAverageDailyStepsByWeek(weekOffset)
     fun getActivityCountByWeek(weekOffset: Int) = dao.getActivityCountByWeek(weekOffset)
 }

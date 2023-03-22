@@ -1,5 +1,6 @@
 package com.example.team42fitness.api
 
+import com.example.team42fitness.api.food.FoodItem
 import com.example.team42fitness.api.food.FoodListJsonAdapter
 import com.example.team42fitness.api.food.FoodSearchResultsList
 import com.squareup.moshi.Moshi
@@ -7,6 +8,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 
@@ -26,15 +28,21 @@ interface FoodDataSearchService {
      * object if the API call was successful.
      */
 
-    @GET("search")
+    @GET("foods/search")
     suspend fun searchForFood(
         @Query("query") query: String?,
         @Query("api_key") apiKey: String = "fzLMJqmkWeci3bkjhONuhFt4M9ZjGc6rwj1jCBfQ",
         @Query("pageSize") size: Int = 10
     ) : Response<FoodSearchResultsList>
 
+    @GET("food")
+    suspend fun recallFood(
+        @Path("fdcid") query: String?,
+        @Query("api_key") apiKey: String = "fzLMJqmkWeci3bkjhONuhFt4M9ZjGc6rwj1jCBfQ",
+    ) : Response<FoodItem>
+
     companion object {
-        private const val BASE_URL = "https://api.nal.usda.gov/fdc/v1/foods/"
+        private const val BASE_URL = "https://api.nal.usda.gov/fdc/v1/"
 
     //@GET("foods/search")
     //suspend fun searchForFood(

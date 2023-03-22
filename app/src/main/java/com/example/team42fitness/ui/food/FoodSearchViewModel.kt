@@ -25,7 +25,6 @@ class FoodSearchViewModel: ViewModel() {
         viewModelScope.launch {
             _loadingStatus.value = LoadingStatus.LOADING
             val result = repository.lookupFood(query)
-            // get that result and store in repo
             _searchResults.value = result.getOrNull()
             _errorMessage.value = result.exceptionOrNull()?.message
             _loadingStatus.value = when(result.isSuccess){

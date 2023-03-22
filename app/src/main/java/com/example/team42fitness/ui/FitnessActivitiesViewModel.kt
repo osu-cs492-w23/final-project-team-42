@@ -28,7 +28,7 @@ class FitnessActivitiesViewModel(application: Application): AndroidViewModel(app
         }
     }
 
-    fun getAverageDailyCaloriesByWeek(weekOffset: Int) =
+    fun getAverageDailyStepsByWeek(weekOffset: Int) =
         repository.getAverageDailyStepsByWeek(weekOffset).asLiveData()
 
     fun getActivityCountByWeek(weekOffset: Int) =

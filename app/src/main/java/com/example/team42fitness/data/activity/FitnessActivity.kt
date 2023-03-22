@@ -7,8 +7,9 @@ import androidx.room.PrimaryKey
 class FitnessActivity(
     @PrimaryKey
     val id: Int,
-    val name: String,
-    val duration: Int,
+    val latitude: String,
+    val longitude: String,
+    val location: String,
     val steps: Int,
     val date: String
     ) : java.io.Serializable

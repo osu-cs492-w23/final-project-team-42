@@ -5,8 +5,6 @@ import androidx.room.PrimaryKey
 
 @Entity
 class Food(
-//    @PrimaryKey(autoGenerate = true)
-//    val id: Int?,
     @PrimaryKey
     val fdcid: Int,
     val name: String,
@@ -16,4 +14,5 @@ class Food(
     val carbs: String?,
     val sugars: String?,
     val date: String?
+
 ) : java.io.Serializable

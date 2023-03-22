@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 class Food(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     val id: Int,
     val fdcid: String,
     val date: String

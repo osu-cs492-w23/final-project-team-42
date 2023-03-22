@@ -1,25 +1,32 @@
 package com.example.team42fitness.ui.locationLookback
 
+import android.location.Geocoder
+import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.MutableLiveData
-import androidx.navigation.fragment.findNavController
+import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.team42fitness.R
 import com.example.team42fitness.api.LocationFetcher
 import com.example.team42fitness.api.StepCounter
-import com.example.team42fitness.data.locationLookback.LocationData
+import com.example.team42fitness.data.activity.FitnessActivity
+import com.example.team42fitness.ui.FitnessActivitiesViewModel
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class RecordFitnessFragment : Fragment(R.layout.fragment_record_fitness) {
     private lateinit var viewModel: RecordFitnessViewModel
+
+    private val fviewModel: FitnessActivitiesViewModel by viewModels()
 
     private var isRecording = false
     private var locLat: Double = 0.0
     private var locLong: Double = 0.0
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -58,7 +65,24 @@ class RecordFitnessFragment : Fragment(R.layout.fragment_record_fitness) {
                 // Stop recording
                 val stepsCounted = stepCounter.stopRecording()
 
-                // TODO: Enter data into database
+                val geocoder = Geocoder(requireContext())
+                val addresses = geocoder.getFromLocation(locLat, locLong, 1)
+
+                val location = addresses!![0].getAddressLine(0) +
+                               addresses!![0].getAddressLine(1) +
+                               addresses!![0].getAddressLine(2)
+
+                val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+                val date = LocalDateTime.now().format(formatter)
+
+                fviewModel.addFitnessActivity(FitnessActivity(
+                    0,
+                    locLat.toString(),
+                    locLong.toString(),
+                    location,
+                    stepsCounted,
+                    date
+                ))
 
                 btnRecordSteps.text = "Record Steps"
             }

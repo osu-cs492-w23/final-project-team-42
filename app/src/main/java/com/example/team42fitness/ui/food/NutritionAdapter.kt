@@ -65,6 +65,8 @@ class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
             var fatStr: String? = null
             var carbsStr: String? = null
             var sugarStr: String? = null
+            val date = NutritionAdapter2().date
+
 
 
             for ((i, nutrient) in nutrients.withIndex()){
@@ -99,10 +101,9 @@ class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
                     }
                 }
             }
-
             addFoodBtn.setOnClickListener{
-                val date = NutritionAdapter2().date
 
+                Log.d("N1","date = $date")
                 val food = Food(fdcid = currentFoodItem!!.fdcId, date = date, energy = energy
                 , protein = proteinStr, fat = fatStr, carbs = carbsStr, sugars = sugarStr, name = currentFoodItem!!.description)
                 val nutrition = NutritionViewModel(application = Application())
@@ -121,8 +122,9 @@ class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>() {
     private var foodItem = listOf<Food>()
     var date: String? = null
 
-    fun updateFoodItems(newFoodItemList: List<Food>?) {
+    fun updateFoodItems(newFoodItemList: List<Food>?, newDate: String?) {
         foodItem = newFoodItemList ?: listOf()
+        date = newDate
         notifyDataSetChanged()
     }
 

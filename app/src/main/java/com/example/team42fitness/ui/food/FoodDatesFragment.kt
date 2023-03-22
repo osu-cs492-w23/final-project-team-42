@@ -1,6 +1,7 @@
 package com.example.team42fitness.ui.food
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -43,6 +44,7 @@ class FoodDatesFragment : Fragment(R.layout.fragment_food) {
     }
 
     private fun onFoodDateItemClick(date: String){
+        Log.d("FoodDates", "date: $date")
         val directions = FoodDatesFragmentDirections.navigateToFoodData(date)
         findNavController().navigate(directions)
     }

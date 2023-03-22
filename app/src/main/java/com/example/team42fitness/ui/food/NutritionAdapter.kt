@@ -19,6 +19,7 @@ import java.util.*
 
 class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
     private var foodItem = listOf<FoodItem>()
+    var date: String? = null
 
 
     fun updateFoodItems(newFoodItemList: List<FoodItem>?){
@@ -32,7 +33,7 @@ class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FoodDataViewHolder{
         val view = LayoutInflater.from(parent.context).inflate(R.layout.food_data_item,
             parent, false)
-        return FoodDataViewHolder(view)
+        return FoodDataViewHolder(view, date)
     }
 
     override fun onBindViewHolder(holder: FoodDataViewHolder, position: Int){
@@ -40,7 +41,7 @@ class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
 
     }
 
-    class FoodDataViewHolder(view: View): RecyclerView.ViewHolder(view){
+    class FoodDataViewHolder(view: View, date:String?): RecyclerView.ViewHolder(view){
         private val foodDataTV = view.findViewById<TextView>(R.id.tv_data_text)
         private val addFoodBtn = view.findViewById<Button>(R.id.btn_add_food_data)
         private val brand = view.findViewById<TextView>(R.id.tv_brand)
@@ -65,7 +66,7 @@ class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
             var fatStr: String? = null
             var carbsStr: String? = null
             var sugarStr: String? = null
-            val date = NutritionAdapter2().date
+            val date = NutritionAdapter2().getClickedDate()
 
 
 
@@ -126,6 +127,10 @@ class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>() {
         foodItem = newFoodItemList ?: listOf()
         date = newDate
         notifyDataSetChanged()
+    }
+
+    fun getClickedDate(): String?{
+        return date
     }
 
     override fun getItemCount() = foodItem.size

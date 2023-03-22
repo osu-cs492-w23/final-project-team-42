@@ -30,6 +30,7 @@ class NutritionFragment: Fragment(R.layout.fragment_food_data) {
 
         val adapter = NutritionAdapter2()
         foodDateListRV.adapter = adapter
+
         Log.d("NutritionFragment","date clicked: ${args.dateClicked}")
         viewModel.allFoodItems.observe(viewLifecycleOwner){foodItems ->
             adapter.updateFoodItems(foodItems, args.dateClicked)

@@ -64,13 +64,18 @@ class RecordFitnessFragment : Fragment(R.layout.fragment_record_fitness) {
             else {
                 // Stop recording
                 val stepsCounted = stepCounter.stopRecording()
+                var location: String = "Unknown Location"
 
-                val geocoder = Geocoder(requireContext())
-                val addresses = geocoder.getFromLocation(locLat, locLong, 1)
+                try {
+                    val geocoder = Geocoder(requireContext())
+                    val addresses = geocoder.getFromLocation(locLat, locLong, 1)
 
-                val location = addresses!![0].getAddressLine(0) +
-                               addresses!![0].getAddressLine(1) +
-                               addresses!![0].getAddressLine(2)
+                    if (addresses?.isNotEmpty() == true) {
+                        location = addresses!![0].getAddressLine(0)
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
 
                 val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
                 val date = LocalDateTime.now().format(formatter)

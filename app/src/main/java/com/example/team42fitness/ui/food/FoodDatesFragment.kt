@@ -42,8 +42,8 @@ class FoodDatesFragment : Fragment(R.layout.fragment_food) {
         }
     }
 
-    private fun onFoodDateItemClick(){
-        val directions = FoodDatesFragmentDirections.navigateToFoodData()
+    private fun onFoodDateItemClick(date: String){
+        val directions = FoodDatesFragmentDirections.navigateToFoodData(date)
         findNavController().navigate(directions)
     }
 

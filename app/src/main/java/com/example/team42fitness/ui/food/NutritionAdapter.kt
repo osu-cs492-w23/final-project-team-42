@@ -1,5 +1,6 @@
 package com.example.team42fitness.ui.food
 
+import android.app.Application
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -7,14 +8,18 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.team42fitness.api.food.FoodItem
 import com.example.team42fitness.api.food.Nutrients
+import com.example.team42fitness.data.food.Food
+import java.util.*
 
 class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
     private var foodItem = listOf<FoodItem>()
+
 
     fun updateFoodItems(newFoodItemList: List<FoodItem>?){
         foodItem = newFoodItemList ?: listOf()
@@ -46,41 +51,63 @@ class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
         private val sugar = view.findViewById<TextView>(R.id.tv_sugar)
 
         private var currentFoodItem: FoodItem? = null
+//        private val viewModel: NutritionViewModel =
+//            ViewModelProvider.AndroidViewModelFactory().create(NutritionViewModel::class.java )
 
         fun bind(foodItem: FoodItem){
             currentFoodItem = foodItem
             foodDataTV.text = foodItem.description
             brand.text = foodItem.brandName
             val nutrients: List<Nutrients> = foodItem.nutrients
+
+            var energy: String? = null
+            var proteinStr: String? = null
+            var fatStr: String? = null
+            var carbsStr: String? = null
+            var sugarStr: String? = null
+
+
             for ((i, nutrient) in nutrients.withIndex()){
                 when (nutrient.name){
                     "Energy" -> {
                         val n = "Calories ${nutrient.amount} ${nutrient.unit}"
+                        energy = n
                         calories.text = n
                     }
                     "Protein" -> {
                         val n = "${nutrient.name} ${nutrient.amount} ${nutrient.unit}"
+                        proteinStr = n
                         protein.text = n
                     }
 
                     "Total lipid (fat)" -> {
                         val n = "Fat ${nutrient.amount} ${nutrient.unit}"
+                        fatStr = n
                         fat.text = n
                     }
 
                     "Carbohydrate, by difference" -> {
                         val n = "Carbs ${nutrient.amount} ${nutrient.unit}"
+                        carbsStr = n
                         carb.text = n
                     }
 
-                    "Sugars" -> {
-                        val n = "${nutrient.name} ${nutrient.amount} ${nutrient.unit}"
+                    "Sugars, total including NLEA" -> {
+                        val n = "Sugars ${nutrient.amount} ${nutrient.unit}"
+                        sugarStr = n
                         sugar.text = n
                     }
                 }
             }
 
             addFoodBtn.setOnClickListener{
+                val date = NutritionAdapter2().date
+
+                val food = Food(fdcid = currentFoodItem!!.fdcId, date = date, energy = energy
+                , protein = proteinStr, fat = fatStr, carbs = carbsStr, sugars = sugarStr, name = currentFoodItem!!.description)
+                val nutrition = NutritionViewModel(application = Application())
+                nutrition.addFoodItem(food)
+
                 Log.d("FoodDataAdapter","add food to database: $currentFoodItem")
             }
         }
@@ -91,9 +118,10 @@ class NutritionAdapter: Adapter<NutritionAdapter.FoodDataViewHolder>(){
 
 
 class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>() {
-    private var foodItem = listOf<FoodItem>()
+    private var foodItem = listOf<Food>()
+    var date: String? = null
 
-    fun updateFoodItems(newFoodItemList: List<FoodItem>?) {
+    fun updateFoodItems(newFoodItemList: List<Food>?) {
         foodItem = newFoodItemList ?: listOf()
         notifyDataSetChanged()
     }
@@ -122,7 +150,7 @@ class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>() {
         private val sugar = view.findViewById<TextView>(R.id.tv_sugar)
         private val calories = view.findViewById<TextView>(R.id.tv_calories)
 
-        private var currentFoodItem: FoodItem? = null
+        private var currentFoodItem: Food? = null
 
         init {
             foodImg.animate().apply {
@@ -131,36 +159,42 @@ class NutritionAdapter2: Adapter<NutritionAdapter2.NutritionViewHolder2>() {
             }
         }
 
-        fun bind(foodItem: FoodItem) {
-            currentFoodItem = foodItem
-            foodName.text = foodItem.description
-            val nutrients: List<Nutrients> = foodItem.nutrients
-            for ((i, nutrient) in nutrients.withIndex()) {
-                when (nutrient.name) {
-                    "Energy" -> {
-                        val n = "Calories ${nutrient.amount} ${nutrient.unit}"
-                        calories.text = n
-                    }
-                    "Protein" -> {
-                        val n = "${nutrient.name} ${nutrient.amount} ${nutrient.unit}"
-                        protein.text = n
-                    }
+        fun bind(food: Food) {
+            currentFoodItem = food
+            foodName.text = food.name
+            protein.text = food.protein
+            fat.text = food.fat
+            carb.text = food.carbs
+            sugar.text = food.sugars
+            calories.text = food.energy
 
-                    "Total lipid (fat)" -> {
-                        val n = "Fat ${nutrient.amount} ${nutrient.unit}"
-                        fat.text = n
-                    }
-                    "Carbohydrate, by difference" -> {
-                        val n = "Carbs ${nutrient.amount} ${nutrient.unit}"
-                        carb.text = n
-                    }
-
-                    "Sugars" -> {
-                        val n = "${nutrient.name} ${nutrient.amount} ${nutrient.unit}"
-                        sugar.text = n
-                    }
-                }
-            }
+//            val nutrients: List<Nutrients> = food.nutrients
+//            for ((i, nutrient) in nutrients.withIndex()) {
+//                when (nutrient.name) {
+//                    "Energy" -> {
+//                        val n = "Calories ${nutrient.amount} ${nutrient.unit}"
+//                        calories.text = n
+//                    }
+//                    "Protein" -> {
+//                        val n = "${nutrient.name} ${nutrient.amount} ${nutrient.unit}"
+//                        protein.text = n
+//                    }
+//
+//                    "Total lipid (fat)" -> {
+//                        val n = "Fat ${nutrient.amount} ${nutrient.unit}"
+//                        fat.text = n
+//                    }
+//                    "Carbohydrate, by difference" -> {
+//                        val n = "Carbs ${nutrient.amount} ${nutrient.unit}"
+//                        carb.text = n
+//                    }
+//
+//                    "Sugars" -> {
+//                        val n = "${nutrient.name} ${nutrient.amount} ${nutrient.unit}"
+//                        sugar.text = n
+//                    }
+//                }
+//            }
         }
     }
 }

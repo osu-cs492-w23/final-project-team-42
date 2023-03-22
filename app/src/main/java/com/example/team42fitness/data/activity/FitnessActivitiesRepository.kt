@@ -1,4 +1,4 @@
-package com.example.team42fitness.data
+package com.example.team42fitness.data.activity
 
 class FitnessActivitiesRepository(private val dao: FitnessActivityDao) {
     suspend fun insertFitnessActivity(activity: FitnessActivity) = dao.insert(activity)

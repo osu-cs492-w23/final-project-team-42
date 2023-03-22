@@ -5,7 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.team42fitness.api.FoodDataSearchService
-import com.example.team42fitness.data.foodData.*
+import com.example.team42fitness.api.food.FoodDataSearchRepository
+import com.example.team42fitness.api.food.FoodSearchResultsList
+import com.example.team42fitness.api.food.LoadingStatus
 import kotlinx.coroutines.launch
 
 class FoodSearchViewModel: ViewModel() {

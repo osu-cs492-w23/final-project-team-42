@@ -4,6 +4,9 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.team42fitness.data.activity.FitnessActivity
+import com.example.team42fitness.data.activity.FitnessActivityDao
+import com.example.team42fitness.data.food.FoodDao
 import com.example.team42fitness.data.locationLookback.LocationDao
 import com.example.team42fitness.data.locationLookback.LocationData
 
@@ -14,6 +17,7 @@ abstract class AppDatabase: RoomDatabase() {
     // Daos
     abstract fun locationDao(): LocationDao
     abstract fun fitnessActivityDao(): FitnessActivityDao
+    abstract fun foodDao(): FoodDao
 
     // singleton instantiation
     companion object {

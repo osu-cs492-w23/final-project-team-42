@@ -16,7 +16,7 @@ data class FoodItem(
     @PrimaryKey
     val fdcId: Int,
     val description: String,
-    val brandName: String,
+    val brandName: String?,
 
     @Json(name="foodNutrients")
     val nutrients: List<Nutrients>
@@ -130,7 +130,7 @@ data class FoodDataPropertiesJson(
     val additionalDescriptions: String?, // Any additional descriptions of the food
     val score: Float?, // relative score indicating how well the food matches the search
     val foodNutrients: List<Nutrients>,
-    val brandName: String
+    val brandName: String?
 )
 
 

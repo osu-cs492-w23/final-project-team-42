@@ -1,4 +1,4 @@
-package com.example.team42fitness.data.foodData
+package com.example.team42fitness.api.food
 
 import com.squareup.moshi.JsonClass
 

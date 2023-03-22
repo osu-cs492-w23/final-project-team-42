@@ -10,19 +10,49 @@
         android:name="com.example.team42fitness.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/nav_location"
+        android:name="com.example.team42fitness.ui.locationLookback.LocationFragment"
+        android:label="@string/menu_locations"
+        tools:layout="@layout/fragment_location">
+
+        <action
+            android:id="@+id/navigate_to_clicked_day"
+            app:destination="@+id/clicked_day"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+
+        <action
+            android:id="@+id/navigate_to_record_fitness"
+            app:destination="@+id/record_fitness"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+
+    </fragment>
+
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.example.team42fitness.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/clicked_day"
+        android:name="com.example.team42fitness.ui.locationLookback.ClickedDayFragment"
+        android:label="@string/label_clicked_day"
+        tools:layout="@layout/fragment_clicked_day">
+
+        <argument
+            android:name="locationDate"
+            app:argType="com.example.team42fitness.data.locationLookback.LocationDate"
+        />
+<!--        <argument-->
+<!--            android:name="locationData"-->
+<!--            app:argType="com.example.team42fitness.data.locationLookback.LocationData"-->
+<!--        />-->
+    </fragment>
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.team42fitness.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
-
+        android:id="@+id/record_fitness"
+        android:name="com.example.team42fitness.ui.locationLookback.RecordFitnessFragment"
+        android:label="Record Fitness"
+        tools:layout="@layout/fragment_record_fitness">
+    </fragment>
 
     <fragment
         android:id="@+id/nav_food"
@@ -33,8 +63,10 @@
         <action
             android:id="@+id/navigate_to_food_data"
             app:destination="@+id/food_data"
-            app:enterAnim="@anim/slide_in"
-            app:exitAnim="@anim/fade_out" />
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out"/>
     </fragment>
 
     <fragment
@@ -44,10 +76,10 @@
         <action
             android:id="@+id/navigate_to_search_food"
             app:destination="@+id/food_search"
-            app:enterAnim="@anim/slide_in"
-            app:exitAnim="@anim/slide_out"
-            app:popEnterAnim="@anim/slide_in"
-            app:popExitAnim="@anim/slide_out" />
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
 
     <fragment
@@ -55,7 +87,6 @@
         android:name="com.example.team42fitness.ui.food.FoodSearchFragment"
         android:label="Search For Food to Add"
         >
-
 
     </fragment>
 

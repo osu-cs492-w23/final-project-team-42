@@ -9,15 +9,16 @@ import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.Fragment
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
-class LocationFetcher (private val activity: AppCompatActivity) {
+class LocationFetcher (private val fragment: Fragment) {
     private val TAG = "LocationFetcher"
 
-    private var fusedLocationClient: FusedLocationProviderClient? = LocationServices.getFusedLocationProviderClient(activity)
+    private var fusedLocationClient: FusedLocationProviderClient? = LocationServices.getFusedLocationProviderClient(fragment.requireActivity())
     private var lastCallBackFunc: ((Boolean, Double, Double) -> Unit)? = null
-    private val requestPermissionLauncher = activity.registerForActivityResult(
+    private val requestPermissionLauncher = fragment.registerForActivityResult(
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
             if (isGranted) {
@@ -36,7 +37,7 @@ class LocationFetcher (private val activity: AppCompatActivity) {
             return
         }
 
-        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION)
+        if (ActivityCompat.checkSelfPermission(fragment.requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION)
             != PackageManager.PERMISSION_GRANTED) {
             // Need to request permissions
             lastCallBackFunc = callback

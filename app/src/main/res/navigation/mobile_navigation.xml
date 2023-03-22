@@ -35,6 +35,12 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left" />
 
+        <action
+            android:id="@+id/navigate_to_record_fitness"
+            app:destination="@+id/record_fitness"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left" />
+
     </fragment>
 
 
@@ -52,6 +58,13 @@
 <!--            android:name="locationData"-->
 <!--            app:argType="com.example.team42fitness.data.locationLookback.LocationData"-->
 <!--        />-->
+    </fragment>
+
+    <fragment
+        android:id="@+id/record_fitness"
+        android:name="com.example.team42fitness.ui.locationLookback.RecordFitnessFragment"
+        android:label="Record Fitness"
+        tools:layout="@layout/fragment_record_fitness">
     </fragment>
 
     <fragment

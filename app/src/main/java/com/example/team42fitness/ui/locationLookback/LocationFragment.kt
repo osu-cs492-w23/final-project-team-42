@@ -3,6 +3,7 @@ package com.example.team42fitness.ui.locationLookback
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
 import com.example.team42fitness.data.locationLookback.LocationData
 import com.example.team42fitness.data.locationLookback.LocationDate
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
@@ -36,6 +38,12 @@ class LocationFragment : Fragment(R.layout.fragment_location)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
+
+        // Go to record fitness fragment on floating button click
+        view.findViewById<FloatingActionButton>(R.id.button_record_fitness).setOnClickListener {
+            val directions = LocationFragmentDirections.navigateToRecordFitness()
+            findNavController().navigate(directions)
+        }
 
         /**
          * RecyclerView setup
@@ -106,8 +114,6 @@ class LocationFragment : Fragment(R.layout.fragment_location)
         val directions = LocationFragmentDirections.navigateToClickedDay(locationDate)
         findNavController().navigate(directions)
     }
-
-
 
 
 }

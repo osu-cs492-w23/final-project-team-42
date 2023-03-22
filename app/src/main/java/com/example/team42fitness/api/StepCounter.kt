@@ -7,13 +7,16 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.util.Log
+import androidx.fragment.app.Fragment
 import kotlin.math.sqrt
 
-class StepCounter (private val activity: Activity) : SensorEventListener {
+class StepCounter (private val fragment: Fragment) : SensorEventListener {
     private val TAG = "StepCounter"
 
-    private var sensorManager = activity.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+    private var sensorManager = fragment.requireActivity().getSystemService(Context.SENSOR_SERVICE) as SensorManager
     private var accSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+
+    private var stepUpdateCallBackFunc: ((Int) -> Unit)? = null
 
     private var stepCount = 0
 
@@ -39,6 +42,10 @@ class StepCounter (private val activity: Activity) : SensorEventListener {
         lastSampleTime = null
         accData.clear()
         return stepCount
+    }
+
+    fun setStepUpdateListener(callback: ((Int) -> Unit)) {
+        stepUpdateCallBackFunc = callback
     }
 
     fun getStepCount() : Int {
@@ -96,6 +103,10 @@ class StepCounter (private val activity: Activity) : SensorEventListener {
         if (maxVal.second - minVal.second > 3f) {
             if (maxVal.first > minVal.first) {
                 stepCount++
+                if (stepUpdateCallBackFunc != null) {
+                    stepUpdateCallBackFunc!!(stepCount)
+                }
+
                 accData.clear()
             }
         }

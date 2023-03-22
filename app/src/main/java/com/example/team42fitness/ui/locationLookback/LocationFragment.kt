@@ -3,15 +3,14 @@ package com.example.team42fitness.ui.locationLookback
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.team42fitness.R
-import com.example.team42fitness.data.locationLookback.LocationData
 import com.example.team42fitness.data.locationLookback.LocationDate
+import com.example.team42fitness.ui.FitnessActivitiesViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -29,6 +28,7 @@ class LocationFragment : Fragment(R.layout.fragment_location)
     private val TAG = "LocationFragment.kt"
 
     private val viewModel: LocationViewModel by viewModels()
+    private val fviewModel: FitnessActivitiesViewModel by viewModels()
     private val locationAdapter = LocationAdapter(::onLocationDateItemClick)
 
     private lateinit var locationDateRV: RecyclerView
@@ -54,11 +54,14 @@ class LocationFragment : Fragment(R.layout.fragment_location)
         locationDateRV.adapter = locationAdapter
 
 
+        fviewModel.fitnessActivities.observe(requireActivity()) {
+            locationAdapter.addFitnessActivities(it)
+        }
 
 
         /**
          * Populate recyclerview (for now, not sure if may change later)
-         */
+
         if (counter == 1)
         {
             val listDates: List<String> = populateList(start = "03-19-2023", end = "04-02-2023")
@@ -68,7 +71,7 @@ class LocationFragment : Fragment(R.layout.fragment_location)
             }
         }
             counter += 1
-
+         */
 
 
     }
